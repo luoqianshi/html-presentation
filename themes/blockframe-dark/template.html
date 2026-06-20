@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BlockFrame Dark — 视频演示模板</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+SC:wght@400;500;600;700;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --pink: #FE90E8;
+      --blue: #C0F7FE;
+      --green: #99E885;
+      --yellow: #F7CB46;
+      --cream: #FFDC8B;
+      --black: #0a0a0a;
+      --card: #141414;
+      --card-elevated: #1c1c1c;
+      --white: #f6f6f6;
+      --muted: #a0a0a0;
+      --border-color: #f6f6f6;
+      --border: 4px solid var(--border-color);
+      --shadow: 8px 8px 0px rgba(246, 246, 246, 0.15);
+      --shadow-sm: 4px 4px 0px rgba(246, 246, 246, 0.15);
+      --glow-pink: 0 0 24px rgba(254, 144, 232, 0.35);
+      --glow-blue: 0 0 24px rgba(192, 247, 254, 0.30);
+      --glow-green: 0 0 24px rgba(153, 232, 133, 0.30);
+      --glow-yellow: 0 0 24px rgba(247, 203, 70, 0.35);
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html, body {
+      height: 100%; overflow: hidden;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      background: var(--black); color: var(--white);
+    }
+
+    .slides-container { position: relative; width: 100vw; height: 100vh; }
+
+    .slide {
+      position: absolute; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      display: none; padding: 56px 10vw;
+      overflow: hidden;
+    }
+    .slide.active { display: flex; }
+
+    /* Utility */
+    .nb-label {
+      display: inline-block; border: 3px solid var(--border-color);
+      padding: 8px 18px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; background: var(--card);
+      box-shadow: var(--shadow-sm); color: var(--white);
+    }
+    .nb-label-pink { background: var(--pink); color: var(--black); }
+    .nb-label-green { background: var(--green); color: var(--black); }
+    .nb-label-yellow { background: var(--yellow); color: var(--black); }
+    .nb-label-cream { background: var(--cream); color: var(--black); }
+    .nb-label-blue { background: var(--blue); color: var(--black); }
+
+    .nb-card {
+      border: var(--border); background: var(--card);
+      box-shadow: var(--shadow);
+    }
+    .nb-card-flat {
+      border: var(--border); background: var(--card);
+    }
+
+    .nb-heading-xl {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(44px, 5.5vw, 84px);
+      line-height: 1.05; letter-spacing: -0.03em;
+      color: var(--white);
+    }
+    .nb-heading-lg {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 800; font-size: clamp(32px, 4vw, 60px);
+      line-height: 1.1; letter-spacing: -0.02em;
+      color: var(--white);
+    }
+    .nb-heading-md {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 700; font-size: clamp(22px, 2.4vw, 38px);
+      line-height: 1.2; color: var(--white);
+    }
+    .nb-body {
+      font-size: clamp(17px, 1.5vw, 24px);
+      line-height: 1.65; font-weight: 500; color: var(--muted);
+    }
+    .nb-mono {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-weight: 600; font-size: 15px; letter-spacing: 0.05em;
+      text-transform: uppercase; color: var(--white);
+    }
+
+    .corner-bracket {
+      position: absolute; width: 28px; height: 28px;
+      border: 4px solid var(--border-color);
+    }
+    .corner-bracket.tl { border-right: none; border-bottom: none; top: 0; left: 0; }
+    .corner-bracket.tr { border-left: none; border-bottom: none; top: 0; right: 0; }
+    .corner-bracket.bl { border-right: none; border-top: none; bottom: 0; left: 0; }
+    .corner-bracket.br { border-left: none; border-top: none; bottom: 0; right: 0; }
+
+    .nav-controls {
+      position: fixed; bottom: 24px; right: 24px;
+      display: flex; gap: 12px; z-index: 1000;
+    }
+    .nav-btn {
+      width: 48px; height: 48px; border: 3px solid var(--border-color);
+      background: var(--card); cursor: pointer; color: var(--white);
+      font-weight: 700; font-size: 18px;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: var(--shadow-sm); transition: all 0.15s ease;
+    }
+    .nav-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px rgba(246,246,246,0.25); }
+    .slide-counter {
+      position: fixed; bottom: 24px; left: 24px; z-index: 1000;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-weight: 700; font-size: 14px; letter-spacing: 0.1em;
+      text-transform: uppercase; border: 3px solid var(--border-color);
+      background: var(--card); color: var(--white); padding: 10px 18px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* SLIDE 1: Title Hero */
+    .slide-1 {
+      background: var(--black);
+      flex-direction: column; justify-content: center; align-items: center;
+    }
+    .slide-1 .hero-frame {
+      position: relative; width: 100%; max-width: 980px;
+      border: var(--border); background: var(--card);
+      padding: 64px 72px; box-shadow: var(--shadow);
+    }
+    .slide-1 .hero-label { margin-bottom: 28px; }
+    .slide-1 .hero-title { margin-bottom: 28px; }
+    .slide-1 .hero-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: clamp(16px, 1.4vw, 22px); font-weight: 600;
+      max-width: 580px; line-height: 1.6; color: var(--muted);
+    }
+    .slide-1 .deco-pink-rect {
+      position: absolute; top: -28px; right: 90px;
+      width: 110px; height: 110px; background: var(--pink);
+      border: var(--border); box-shadow: var(--glow-pink);
+      transform: rotate(12deg); z-index: 5;
+    }
+    .slide-1 .deco-green-circle {
+      position: absolute; bottom: 70px; right: 140px;
+      width: 64px; height: 64px; background: var(--green);
+      border: var(--border); border-radius: 50%; z-index: 5;
+      box-shadow: var(--glow-green);
+    }
+    .slide-1 .deco-yellow-bar {
+      position: absolute; bottom: -18px; left: 90px; width: 150px; height: 38px;
+      background: var(--yellow); border: var(--border); box-shadow: var(--glow-yellow);
+      transform: rotate(-3deg); display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace; font-size: 13px; font-weight: 700;
+      color: var(--black); z-index: 5;
+    }
+    .slide-1 .deco-dots {
+      position: absolute; top: 50px; left: 50px;
+      width: 120px; height: 80px;
+      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
+      background-size: 20px 20px; opacity: 0.25;
+    }
+
+    /* SLIDE 2: Two Column Intro */
+    .slide-2 {
+      background: var(--black);
+      flex-direction: row; gap: 56px; align-items: center;
+    }
+    .slide-2 .col-left {
+      flex: 1; display: flex; flex-direction: column; gap: 28px;
+    }
+    .slide-2 .col-right {
+      flex: 1; display: flex; flex-direction: column; gap: 22px;
+    }
+    .slide-2 .intro-card {
+      border: var(--border); background: var(--card);
+      padding: 34px; box-shadow: var(--shadow-sm);
+    }
+    .slide-2 .intro-card h3 {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 800; font-size: clamp(18px, 1.6vw, 24px);
+      margin-bottom: 12px; text-transform: uppercase; color: var(--white);
+    }
+    .slide-2 .intro-card p {
+      font-size: clamp(15px, 1.3vw, 20px); line-height: 1.6; font-weight: 500;
+      color: var(--muted);
+    }
+    .slide-2 .stat-pill {
+      display: inline-flex; align-items: center; gap: 8px;
+      border: 3px solid var(--border-color); padding: 10px 20px;
+      background: var(--yellow); font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 14px; font-weight: 700; color: var(--black);
+    }
+
+    /* SLIDE 3: Three Feature Cards */
+    .slide-3 {
+      background: var(--black);
+      flex-direction: column; justify-content: center;
+    }
+    .slide-3 .slide-header { margin-bottom: 48px; }
+    .slide-3 .cards-row {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; width: 100%;
+    }
+    .slide-3 .feature-card {
+      border: var(--border); background: var(--card);
+      padding: 36px; box-shadow: var(--shadow); position: relative;
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .slide-3 .feature-icon {
+      width: 64px; height: 64px; border: 3px solid var(--border-color);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 26px; font-weight: 900; color: var(--black);
+    }
+    .slide-3 .feature-card h3 {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 800; font-size: clamp(20px, 1.8vw, 28px);
+      text-transform: uppercase; color: var(--white);
+    }
+    .slide-3 .feature-card p {
+      font-size: clamp(15px, 1.25vw, 20px); line-height: 1.55; font-weight: 500;
+      color: var(--muted);
+    }
+    .slide-3 .card-deco {
+      position: absolute; top: -12px; right: 24px;
+      width: 48px; height: 48px; border: 3px solid var(--border-color); background: var(--yellow);
+    }
+
+    /* SLIDE 4: Chart / Data */
+    .slide-4 {
+      background: var(--black);
+      flex-direction: column; justify-content: center;
+      padding-bottom: 110px;
+    }
+    .slide-4 .chart-frame {
+      border: var(--border); background: var(--card);
+      box-shadow: var(--shadow); padding: 32px 40px;
+      width: calc(100% - 16px); max-width: 1200px; margin: 0 auto;
+      max-height: 70vh; display: flex; flex-direction: column; gap: 20px;
+      overflow: hidden;
+    }
+    .slide-4 .chart-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      flex-shrink: 0;
+    }
+    .slide-4 .chart-legend { display: flex; gap: 16px; }
+    .slide-4 .legend-item {
+      display: flex; align-items: center; gap: 6px;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 13px; font-weight: 600; color: var(--white);
+    }
+    .slide-4 .legend-swatch {
+      width: 16px; height: 16px; border: 2px solid var(--border-color);
+    }
+    .slide-4 .chart-body {
+      display: flex; gap: 32px; flex: 1 1 auto; min-height: 0;
+      align-items: stretch; width: 100%;
+    }
+    .chart-svg {
+      display: block; flex: 1 1 auto; min-width: 0; min-height: 0;
+      width: 100%; height: 100%; max-width: 100%; max-height: 100%;
+    }
+    .slide-4 .data-column {
+      display: flex; flex-direction: column; gap: 16px;
+      flex: 0 0 240px; width: 240px; min-width: 0;
+    }
+    .slide-4 .data-box {
+      flex: 1 1 0; min-height: 0; border: 3px solid var(--border-color);
+      background: var(--card-elevated); padding: 18px 20px; text-align: center;
+      display: flex; flex-direction: column; justify-content: center; gap: 6px;
+    }
+    .slide-4 .data-box .data-num {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: 36px; color: var(--white);
+      display: block; margin-bottom: 4px;
+    }
+    .slide-4 .data-box .data-label {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* SLIDE 5: Big Statement / Quote */
+    .slide-5 {
+      background: var(--black);
+      flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; position: relative;
+    }
+    .slide-5 .quote-frame {
+      border: var(--border); background: var(--card);
+      padding: 60px 80px; box-shadow: var(--shadow);
+      max-width: 1000px; position: relative;
+    }
+    .slide-5 .quote-text {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(28px, 3.5vw, 52px);
+      line-height: 1.15; letter-spacing: -0.02em;
+      text-transform: uppercase; margin-bottom: 32px; color: var(--white);
+    }
+    .slide-5 .quote-author {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 15px; font-weight: 600; color: var(--muted);
+      letter-spacing: 0.05em; text-transform: uppercase;
+    }
+    .slide-5 .deco-quote-marks {
+      position: absolute; top: -30px; left: 40px;
+      font-size: 120px; font-weight: 900; line-height: 1;
+      color: var(--black); -webkit-text-stroke: 3px var(--border-color);
+    }
+    .slide-5 .deco-stripes {
+      position: absolute; bottom: 60px; right: 60px;
+      width: 80px; height: 80px;
+      background: repeating-linear-gradient(45deg, var(--border-color), var(--border-color) 4px, var(--green) 4px, var(--green) 12px);
+      border: 3px solid var(--border-color);
+    }
+
+    /* SLIDE 6: Split Image + Text */
+    .slide-6 {
+      background: var(--black);
+      flex-direction: row; gap: 0; padding: 0;
+    }
+    .slide-6 .split-visual {
+      flex: 1; background: var(--card-elevated); color: var(--white);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 60px; position: relative; overflow: hidden;
+      border-right: var(--border);
+    }
+    .slide-6 .split-visual .visual-box {
+      width: 100%; max-width: 360px; aspect-ratio: 1;
+      border: 4px solid var(--border-color); background: var(--pink);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(36px, 4vw, 64px); text-align: center;
+      color: var(--black); position: relative; box-shadow: var(--glow-pink);
+    }
+    .slide-6 .split-visual .visual-box::after {
+      content: ''; position: absolute; top: 20px; left: 20px;
+      width: 100%; height: 100%; background: var(--yellow);
+      border: 4px solid var(--border-color); z-index: -1;
+    }
+    .slide-6 .split-visual .visual-label {
+      position: absolute; top: 40px; right: 40px;
+      border: 3px solid var(--border-color); background: var(--yellow); color: var(--black);
+      padding: 8px 16px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 13px; font-weight: 700; transform: rotate(-4deg);
+    }
+    .slide-6 .split-content {
+      flex: 1; padding: 60px 10vw; display: flex; flex-direction: column;
+      justify-content: center; gap: 28px; background: var(--black);
+    }
+    .slide-6 .content-list {
+      list-style: none; display: flex; flex-direction: column; gap: 16px;
+    }
+    .slide-6 .content-list li {
+      display: flex; align-items: flex-start; gap: 14px;
+      font-size: clamp(15px, 1.3vw, 20px); line-height: 1.5; font-weight: 600;
+      color: var(--white);
+    }
+    .slide-6 .content-list .list-num {
+      flex-shrink: 0; width: 40px; height: 40px;
+      border: 3px solid var(--border-color); background: var(--yellow);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-weight: 700; font-size: 15px; color: var(--black);
+    }
+
+    /* SLIDE 7: Timeline / Process */
+    .slide-7 {
+      background: var(--black);
+      flex-direction: column; justify-content: center;
+    }
+    .slide-7 .slide-header { margin-bottom: 48px; }
+    .slide-7 .timeline { display: flex; gap: 0; width: 100%; }
+    .slide-7 .timeline-step {
+      flex: 1; border: var(--border); background: var(--card);
+      padding: 34px 28px; box-shadow: var(--shadow-sm);
+      position: relative; margin-right: -4px;
+      display: flex; flex-direction: column; gap: 12px;
+    }
+    .slide-7 .timeline-step:nth-child(1) { background: var(--cream); color: var(--black); }
+    .slide-7 .timeline-step:nth-child(2) { background: var(--pink); color: var(--black); }
+    .slide-7 .timeline-step:nth-child(3) { background: var(--yellow); color: var(--black); margin-right: 0; }
+    .slide-7 .timeline-step:nth-child(-n+3) .step-desc { color: rgba(0,0,0,0.75); }
+    .slide-7 .timeline-step:nth-child(-n+3) .step-title { color: var(--black); }
+    .slide-7 .step-num {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(40px, 4vw, 64px);
+      line-height: 1; opacity: 0.6;
+    }
+    .slide-7 .step-title {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 800; font-size: clamp(18px, 1.6vw, 26px);
+      text-transform: uppercase;
+    }
+    .slide-7 .step-desc {
+      font-size: clamp(14px, 1.15vw, 19px); line-height: 1.55; font-weight: 500;
+      color: var(--muted);
+    }
+    .slide-7 .step-connector {
+      position: absolute; top: 50%; right: -28px;
+      width: 28px; height: 4px; background: var(--border-color); z-index: 10;
+      transform: translateY(-50%);
+    }
+
+    /* SLIDE 8: Statistics / Numbers */
+    .slide-8 {
+      background: var(--black);
+      flex-direction: column; justify-content: center;
+    }
+    .slide-8 .slide-header { margin-bottom: 48px; }
+    .slide-8 .stats-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; width: 100%;
+    }
+    .slide-8 .stat-card {
+      border: var(--border); background: var(--card);
+      padding: 32px; box-shadow: var(--shadow-sm);
+      text-align: center; position: relative;
+    }
+    .slide-8 .stat-card:nth-child(odd) { transform: rotate(-2deg); }
+    .slide-8 .stat-card:nth-child(even) { transform: rotate(2deg); }
+    .slide-8 .stat-card:nth-child(1) { box-shadow: var(--glow-pink); }
+    .slide-8 .stat-card:nth-child(2) { box-shadow: var(--glow-blue); }
+    .slide-8 .stat-card:nth-child(3) { box-shadow: var(--glow-green); }
+    .slide-8 .stat-card:nth-child(4) { box-shadow: var(--glow-yellow); }
+    .slide-8 .stat-number {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(36px, 4vw, 64px);
+      line-height: 1; margin-bottom: 12px; color: var(--white);
+    }
+    .slide-8 .stat-label {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--muted);
+    }
+    .slide-8 .stat-deco {
+      position: absolute; top: 8px; right: 8px;
+      width: 12px; height: 12px; border-radius: 50%; border: 2px solid var(--border-color);
+    }
+
+    /* SLIDE 9: Team / Grid */
+    .slide-9 {
+      background: var(--black);
+      flex-direction: column; justify-content: center;
+      padding-bottom: 110px;
+    }
+    .slide-9 .slide-header { margin-bottom: 32px; }
+    .slide-9 .team-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%;
+    }
+    .slide-9 .team-card {
+      border: var(--border); background: var(--card);
+      padding: 22px; box-shadow: var(--shadow-sm);
+      display: flex; flex-direction: column; gap: 10px; min-width: 0;
+    }
+    .slide-9 .team-avatar {
+      width: 72px; height: 72px; border: 3px solid var(--border-color);
+      background: var(--pink); display: flex; align-items: center; justify-content: center;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: 28px; text-transform: uppercase; color: var(--black);
+    }
+    .slide-9 .team-card:nth-child(2) .team-avatar { background: var(--cream); }
+    .slide-9 .team-card:nth-child(3) .team-avatar { background: var(--green); }
+    .slide-9 .team-card:nth-child(4) .team-avatar { background: var(--yellow); }
+    .slide-9 .team-card:nth-child(5) .team-avatar { background: var(--blue); }
+    .slide-9 .team-card:nth-child(6) .team-avatar { background: var(--pink); }
+    .slide-9 .team-name {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 700; font-size: 20px; text-transform: uppercase; color: var(--white);
+    }
+    .slide-9 .team-role {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 14px; font-weight: 500; text-transform: uppercase;
+      letter-spacing: 0.05em; color: var(--muted);
+    }
+    .slide-9 .team-bio {
+      font-size: 13px; line-height: 1.45; font-weight: 500; color: var(--muted);
+    }
+
+    /* SLIDE 10: Closing */
+    .slide-10 {
+      background: var(--black);
+      flex-direction: column; justify-content: center; align-items: center;
+      text-align: center; color: var(--white);
+    }
+    .slide-10 .close-frame {
+      border: 4px solid var(--border-color); background: var(--card);
+      padding: 60px 80px; box-shadow: 12px 12px 0px var(--yellow);
+      position: relative;
+    }
+    .slide-10 .close-title {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900; font-size: clamp(40px, 5vw, 80px);
+      line-height: 0.95; letter-spacing: -0.03em;
+      text-transform: uppercase; color: var(--white); margin-bottom: 24px;
+    }
+    .slide-10 .close-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 18px; font-weight: 500; color: var(--muted); margin-bottom: 40px;
+    }
+    .slide-10 .close-btn {
+      display: inline-block; border: 3px solid var(--border-color);
+      padding: 16px 40px; font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 700; font-size: 16px; text-decoration: none;
+      color: var(--black); background: var(--yellow);
+      box-shadow: 6px 6px 0px var(--border-color); cursor: pointer; transition: all 0.15s ease;
+    }
+    .slide-10 .close-btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--border-color); }
+    .slide-10 .deco-star {
+      position: absolute; top: -20px; right: 60px;
+      width: 50px; height: 50px; background: var(--yellow);
+      border: 3px solid var(--border-color);
+      clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    }
+    .slide-10 .deco-dots-bottom {
+      position: absolute; bottom: 40px; left: 40px;
+      width: 100px; height: 100px;
+      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
+      background-size: 16px 16px; opacity: 0.2;
+    }
+
+    .highlight { background: var(--yellow); color: var(--black); padding: 0 6px; }
+
+    @media (max-width: 1024px) {
+      .slide { padding: 40px; }
+      .slide-2 { flex-direction: column; }
+      .slide-6 { flex-direction: column; }
+      .slide-6 .split-visual { border-right: none; border-bottom: var(--border); }
+      .slide-6 .split-content { padding: 40px; }
+      .slide-3 .cards-row { grid-template-columns: 1fr; }
+      .slide-4 .chart-body { flex-direction: column; }
+      .slide-4 .data-column { flex: none; width: 100%; }
+      .slide-7 .timeline { flex-direction: column; }
+      .slide-7 .timeline-step { margin-right: 0; margin-bottom: -4px; }
+      .slide-7 .step-connector { display: none; }
+      .slide-8 .stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .slide-9 .team-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .slide-8 .stats-grid { grid-template-columns: 1fr; }
+      .slide-9 .team-grid { grid-template-columns: 1fr; }
+      .slide-1 .hero-frame { padding: 32px; }
+      .slide-5 .quote-frame { padding: 32px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="slide-counter" id="slideCounter">01 / 10</div>
+
+  <div class="nav-controls">
+    <button class="nav-btn" onclick="prevSlide()">&#8592;</button>
+    <button class="nav-btn" onclick="nextSlide()">&#8594;</button>
+  </div>
+
+  <div class="slides-container">
+
+    <!-- SLIDE 1: Title Hero -->
+    <section class="slide slide-1 active">
+      <div class="deco-dots"></div>
+      <div class="hero-frame">
+        <div class="corner-bracket tl"></div><div class="corner-bracket tr"></div>
+        <div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
+        <div class="nb-label hero-label nb-label-green">演示模板</div>
+        <h1 class="nb-heading-xl hero-title">新粗野主义<br>夜间版</h1>
+        <p class="hero-subtitle">高对比、强视觉冲击的暗色模板，兼顾大胆表现与清晰可读。</p>
+        <div class="deco-pink-rect"></div>
+        <div class="deco-green-circle"></div>
+        <div class="deco-yellow-bar">开始使用</div>
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Two Column Intro -->
+    <section class="slide slide-2">
+      <div class="col-left">
+        <div class="nb-label nb-label-pink">章节一</div>
+        <h2 class="nb-heading-lg">大胆的设计语言</h2>
+        <p class="nb-body">BlockFrame Dark 用白色粗边框和硬偏移阴影，在纯黑画布上构建出强烈的图形层次感。</p>
+        <div class="stat-pill">10vw 安全边距</div>
+      </div>
+      <div class="col-right">
+        <div class="intro-card">
+          <h3>高对比</h3>
+          <p>暗色背景让糖果色 accent 更加突出，视频压缩后依然锐利。</p>
+        </div>
+        <div class="intro-card">
+          <h3>视频友好</h3>
+          <p> generous 的水平内边距确保平台 UI 不会遮挡你的内容。</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: Three Feature Cards -->
+    <section class="slide slide-3">
+      <div class="slide-header">
+        <div class="nb-label nb-label-blue">核心特性</div>
+      </div>
+      <div class="cards-row">
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--pink)">A</div>
+          <h3>粗边框</h3>
+          <p>每个区域都有 4px 白色实线边框，建立清晰的视觉边界。</p>
+          <div class="card-deco"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--green)">B</div>
+          <h3>硬阴影</h3>
+          <p>8px 硬偏移阴影让所有元素从黑色画布上“跳”出来。</p>
+          <div class="card-deco"></div>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon" style="background:var(--yellow)">C</div>
+          <h3>糖果色</h3>
+          <p>粉、蓝、绿、黄、奶油色作为点亮色块，活泼但不刺眼。</p>
+          <div class="card-deco"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Chart / Data -->
+    <section class="slide slide-4">
+      <div class="slide-header">
+        <div class="nb-label nb-label-yellow">数据展示</div>
+      </div>
+      <div class="chart-frame">
+        <div class="chart-header">
+          <h3 class="nb-heading-md" style="text-transform:uppercase;">季度增长</h3>
+          <div class="chart-legend">
+            <div class="legend-item"><div class="legend-swatch" style="background:var(--pink)"></div>收入</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:var(--blue)"></div>用户</div>
+          </div>
+        </div>
+        <div class="chart-body">
+          <svg class="chart-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
+            <rect x="0" y="0" width="400" height="200" fill="var(--card-elevated)" stroke="var(--border-color)" stroke-width="2"/>
+            <polyline fill="none" stroke="var(--pink)" stroke-width="4" points="20,160 80,140 140,100 200,90 260,50 320,40 380,20"/>
+            <polyline fill="none" stroke="var(--blue)" stroke-width="4" points="20,170 80,155 140,130 200,110 260,80 320,60 380,45"/>
+            <circle cx="380" cy="20" r="5" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <circle cx="380" cy="45" r="5" fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+          </svg>
+          <div class="data-column">
+            <div class="data-box"><span class="data-num">+128%</span><span class="data-label">收入增长</span></div>
+            <div class="data-box"><span class="data-num">+84%</span><span class="data-label">用户增长</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: Big Statement / Quote -->
+    <section class="slide slide-5">
+      <div class="quote-frame">
+        <div class="deco-quote-marks">"</div>
+        <div class="quote-text">好的设计<br>是尽可能少的设计</div>
+        <div class="quote-author">— Dieter Rams</div>
+      </div>
+      <div class="deco-stripes"></div>
+    </section>
+
+    <!-- SLIDE 6: Split Image + Text -->
+    <section class="slide slide-6">
+      <div class="split-visual">
+        <div class="visual-label">视觉焦点</div>
+        <div class="visual-box"> boldly<br>different</div>
+      </div>
+      <div class="split-content">
+        <div class="nb-label nb-label-pink">章节二</div>
+        <h2 class="nb-heading-lg">为什么选 BlockFrame Dark？</h2>
+        <ul class="content-list">
+          <li><span class="list-num">01</span>夜间模式自带电影感，适合教程和演示视频。</li>
+          <li><span class="list-num">02</span>糖果色 accent 在黑底上饱和度更高，更抓眼。</li>
+          <li><span class="list-num">03</span>10vw 水平安全边距，B 站/YouTube 字幕也不怕挡。</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- SLIDE 7: Timeline / Process -->
+    <section class="slide slide-7">
+      <div class="slide-header">
+        <div class="nb-label nb-label-green">三步流程</div>
+      </div>
+      <div class="timeline">
+        <div class="timeline-step">
+          <div class="step-connector"></div>
+          <div class="step-num">01</div>
+          <div class="step-title">准备内容</div>
+          <div class="step-desc">梳理你的核心信息，每页只讲一个重点。</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-connector"></div>
+          <div class="step-num">02</div>
+          <div class="step-title">套用模板</div>
+          <div class="step-desc">把内容填入 BlockFrame Dark 的预设布局中。</div>
+        </div>
+        <div class="timeline-step">
+          <div class="step-num">03</div>
+          <div class="step-title">导出 PNG</div>
+          <div class="step-desc">运行截图脚本，获得干净的高清分镜图。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 8: Statistics / Numbers -->
+    <section class="slide slide-8">
+      <div class="slide-header">
+        <div class="nb-label nb-label-cream">关键指标</div>
+      </div>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-deco" style="background:var(--pink)"></div>
+          <div class="stat-number">12</div>
+          <div class="stat-label">预设布局</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-deco" style="background:var(--blue)"></div>
+          <div class="stat-number">5</div>
+          <div class="stat-label">accent 色</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-deco" style="background:var(--green)"></div>
+          <div class="stat-number">4px</div>
+          <div class="stat-label">边框粗细</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-deco" style="background:var(--yellow)"></div>
+          <div class="stat-number">10vw</div>
+          <div class="stat-label">安全边距</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 9: Team / Grid -->
+    <section class="slide slide-9">
+      <div class="slide-header">
+        <div class="nb-label nb-label-pink">团队成员</div>
+      </div>
+      <div class="team-grid">
+        <div class="team-card">
+          <div class="team-avatar">AZ</div>
+          <div class="team-name">Alex Zhang</div>
+          <div class="team-role">创始人 / 设计</div>
+          <div class="team-bio">负责视觉系统与品牌策略。</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">BL</div>
+          <div class="team-name">Bella Li</div>
+          <div class="team-role">产品负责人</div>
+          <div class="team-bio">把复杂需求转化为清晰产品路径。</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">CW</div>
+          <div class="team-name">Chris Wang</div>
+          <div class="team-role">技术负责人</div>
+          <div class="team-bio">保证每一帧渲染都干净利落。</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">DY</div>
+          <div class="team-name">Daisy Yang</div>
+          <div class="team-role">内容策略</div>
+          <div class="team-bio">让故事既有逻辑又有感染力。</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">EZ</div>
+          <div class="team-name">Eric Zhao</div>
+          <div class="team-role">增长运营</div>
+          <div class="team-bio">把好产品推给需要它的人。</div>
+        </div>
+        <div class="team-card">
+          <div class="team-avatar">FL</div>
+          <div class="team-name">Fiona Liu</div>
+          <div class="team-role">社区经理</div>
+          <div class="team-bio">连接用户与产品反馈闭环。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 10: Closing -->
+    <section class="slide slide-10">
+      <div class="close-frame">
+        <div class="deco-star"></div>
+        <div class="close-title">开始你的<br><span style="color:var(--yellow)">下一场演示</span></div>
+        <div class="close-subtitle">BlockFrame Dark 已准备好，把你的内容放进这些粗边框里。</div>
+        <a href="#" class="close-btn">立即开始</a>
+      </div>
+      <div class="deco-dots-bottom"></div>
+    </section>
+
+  </div>
+
+  <script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const counter = document.getElementById('slideCounter');
+    const total = slides.length;
+
+    function showSlide(n) {
+      slides.forEach(s => s.classList.remove('active'));
+      slides[n].classList.add('active');
+      counter.textContent = String(n + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+    }
+
+    function nextSlide() {
+      if (currentSlide < total - 1) { currentSlide++; showSlide(currentSlide); }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 0) { currentSlide--; showSlide(currentSlide); }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight') nextSlide();
+      if (e.key === 'ArrowLeft') prevSlide();
+    });
+  </script>
+</body>
+</html>

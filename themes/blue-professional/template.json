@@ -1,0 +1,43 @@
+{
+  "slug": "blue-professional",
+  "name": "Blue Professional",
+  "tagline": "奶油色纸张背景搭配电光钴蓝强调，干净现代的专业风格。",
+  "mood": [
+    "professional",
+    "modern",
+    "calm",
+    "trustworthy"
+  ],
+  "occasion": [
+    "B2B SaaS 产品介绍",
+    "咨询交付物",
+    "内部评审",
+    "顾问提案",
+    "投资者更新"
+  ],
+  "tone": [
+    "clean",
+    "considered",
+    "polished",
+    "neutral"
+  ],
+  "formality": "medium-high",
+  "density": "medium",
+  "palette": {
+    "bg": "#FDFAE7",
+    "primary": "#1E2BFA",
+    "text": "#111111",
+    "text_muted": "#6B6B6B",
+    "description": "温暖的奶油色纸张背景，搭配单一电光钴蓝强调；克制的墨黑文字与柔和中性灰。"
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "style": "现代无衬线字体组合；安静、专业、无多余装饰。"
+  },
+  "scheme": "light",
+  "best_for": "适合需要现代、克制且略带权威感的场景：B2B SaaS 产品演示、咨询交付物、顾问更新、投资者报告。也是希望显得专业但不死板的干净选择，例如研究综述、内部评审、服务型企业品牌展示。",
+  "avoid_for": "不适合需要热烈、 playful 或刻意非正式氛围的场景，冷峻的电光蓝克制感会显得过于 polished。",
+  "slide_count": 10,
+  "navigation": "内联键盘翻页处理器，带页码计数器。"
+}

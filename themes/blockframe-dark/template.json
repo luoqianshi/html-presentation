@@ -1,0 +1,53 @@
+{
+  "slug": "blockframe-dark",
+  "name": "BlockFrame Dark",
+  "tagline": "BlockFrame 的夜间模式：纯黑画布 + 白色粗边框 + 糖果色荧光光晕，视频友好的高对比粗野主义风格。",
+  "mood": [
+    "bold",
+    "playful",
+    "graphic",
+    "dark",
+    "cinematic"
+  ],
+  "occasion": [
+    "创意机构提案",
+    "独立 SaaS 发布",
+    "设计师作品集",
+    "品牌重塑",
+    "现代初创公司路演",
+    "教程与知识分享",
+    "视频分镜素材"
+  ],
+  "tone": [
+    "confident",
+    "graphic",
+    "pop",
+    "design-led"
+  ],
+  "formality": "medium-low",
+  "density": "medium",
+  "palette": {
+    "bg": "#0a0a0a",
+    "card": "#141414",
+    "primary": "#f6f6f6",
+    "accent": "#F7CB46",
+    "pink": "#FE90E8",
+    "blue": "#C0F7FE",
+    "green": "#99E885",
+    "yellow": "#F7CB46",
+    "cream": "#FFDC8B",
+    "description": "纯黑画布搭配白色粗边框，糖果粉、浅蓝、荧光绿、明黄作为点亮色块并带柔和光晕；适合夜间/暗色视频场景。"
+  },
+  "typography": {
+    "display": "Inter",
+    "body": "Inter",
+    "label": "Space Grotesk",
+    "cjk": "Noto Sans SC",
+    "style": "Inter 900 标题 + Space Grotesk 标签/计数器；中文内容回退到 Noto Sans SC，取消 CJK 字间距。"
+  },
+  "scheme": "dark",
+  "best_for": "需要强烈图形感和设计主导气质的暗色内容：创意机构提案、独立产品发布、品牌重塑、设计评审、现代教程、视频分镜。高对比配色在视频压缩后依然清晰。",
+  "avoid_for": "需要明亮、柔和或传统权威感的场景（正式商务汇报、监管披露、浅色品牌展示）。",
+  "slide_count": 10,
+  "navigation": "内联键盘翻页处理器，带固定页码计数器和左右导航按钮；截图时自动隐藏。"
+}

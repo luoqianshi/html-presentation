@@ -1,0 +1,48 @@
+{
+  "slug": "purple-gold-presentation",
+  "name": "Purple Gold Presentation",
+  "tagline": "继承 Blue Professional 的宽松视频友好布局，切换为 Purple Gold 的近黑画布、紫色标题与金色强调。",
+  "mood": [
+    "dark",
+    "cinematic",
+    "professional",
+    "modern",
+    "tutorial"
+  ],
+  "occasion": [
+    "视频教程幻灯片",
+    "B站讲解视频素材",
+    "技术教程",
+    "知识分享",
+    "投资者更新",
+    "咨询交付物"
+  ],
+  "tone": [
+    "confident",
+    "clear",
+    "polished",
+    "modern"
+  ],
+  "formality": "medium-high",
+    "density": "medium",
+  "palette": {
+    "bg": "#08090d",
+    "bg_cover": "#070609",
+    "primary": "#b98eff",
+    "accent_gold": "#ffc402",
+    "text": "#f6f2e8",
+    "text_muted": "#aaa59a",
+    "text_light": "#746f66",
+    "description": "近黑电影感背景，紫色结构强调与金色高亮；暖白色文字保证可读性。"
+  },
+  "typography": {
+    "display": "Space Grotesk",
+    "body": "Inter",
+    "style": "现代无衬线字体组合；大号视频友好字号比例，克制暗色电影感配色。"
+  },
+  "scheme": "dark",
+  "best_for": "需要暗色电影感外观同时保持 Blue Professional 宽松低密度布局的视频友好幻灯片。适合教程、知识讲解、投资者更新和知识分享类 deck，紫色承担结构，金色承担强调。",
+  "avoid_for": "需要明亮/playful 配色、 heavy 渐变、企业蓝或彩虹强调的场景。也不适合浅色背景或紧凑信息密集型布局。",
+  "slide_count": 10,
+  "navigation": "内联键盘翻页处理器，带页码计数器。"
+}
