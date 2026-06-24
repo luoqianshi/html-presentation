@@ -131,6 +131,32 @@
       font-size: 17px;
       line-height: 1.75;
     }
+    .author-line {
+      margin-top: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      width: fit-content;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: #fff;
+      padding: 8px 12px;
+      color: #3f3f46;
+      font-size: 14px;
+      font-weight: 750;
+      box-shadow: 4px 4px 0 #f7cb46;
+    }
+    .author-avatar {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: #111;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 900;
+    }
     .hero-panel {
       border: 1px solid var(--line);
       border-radius: var(--radius);
@@ -345,6 +371,7 @@
       <div>
         <h1 id="hero-title">HTML 视频分镜模板</h1>
         <p>这里汇总了项目里的可用主题。每张卡片都使用真实模板封面截图，可以直接打开预览，也可以查看对应的设计文档。</p>
+        <div class="author-line" aria-label="作者"><span class="author-avatar">J</span><span>卷卷姐 juan 出品</span></div>
       </div>
       <div class="hero-panel" aria-label="项目统计">
         <div class="stat"><strong>4</strong><span>可用模板</span></div>
@@ -379,7 +406,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span>HTML Presentation · 视频友好模板库</span>
+      <span>HTML Presentation · 视频友好模板库 · by 卷卷姐 juan</span>
       <span><a href="NOTICE.md">NOTICE</a> · <a href="LICENSE">MIT License</a></span>
     </div>
   </footer>
