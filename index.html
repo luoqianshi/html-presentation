@@ -4,13 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>HTML Presentation 模板库</title>
-  <meta name="description" content="HTML Presentation 的视频友好模板目录，卡片式浏览并预览各个 HTML 幻灯片模板。">
+  <meta name="description" content="HTML Presentation 的视频友好模板目录，以卡片形式展示并预览各个 HTML 幻灯片模板。">
   <style>
     :root {
       --background: #fafafa;
       --foreground: #171717;
       --card: #ffffff;
-      --card-foreground: #171717;
       --muted: #f4f4f5;
       --muted-foreground: #71717a;
       --border: #e4e4e7;
@@ -18,8 +17,6 @@
       --primary: #18181b;
       --primary-foreground: #fafafa;
       --accent: #f4f4f5;
-      --accent-foreground: #18181b;
-      --ring: #a1a1aa;
       --radius: 8px;
       --shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
       --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Noto Sans SC", sans-serif;
@@ -61,7 +58,6 @@
       gap: 10px;
       padding: 4px 6px;
       font-weight: 700;
-      letter-spacing: -0.01em;
     }
     .brand-mark {
       width: 28px;
@@ -92,7 +88,7 @@
       color: #3f3f46;
       font-size: 14px;
     }
-    .nav-link:hover { background: var(--accent); color: var(--accent-foreground); }
+    .nav-link:hover { background: var(--accent); color: var(--foreground); }
     .nav-link code {
       color: var(--muted-foreground);
       font-family: var(--font-mono);
@@ -115,7 +111,7 @@
       top: 0;
       z-index: 20;
       border-bottom: 1px solid var(--border);
-      background: rgba(250, 250, 250, 0.88);
+      background: rgba(250, 250, 250, 0.9);
       backdrop-filter: blur(12px);
     }
     .topbar-inner {
@@ -128,17 +124,8 @@
       justify-content: space-between;
     }
     .page-title { display: grid; gap: 2px; }
-    .page-title h1 {
-      margin: 0;
-      font-size: 18px;
-      line-height: 1.25;
-      letter-spacing: -0.02em;
-    }
-    .page-title p {
-      margin: 0;
-      color: var(--muted-foreground);
-      font-size: 13px;
-    }
+    .page-title h1 { margin: 0; font-size: 18px; line-height: 1.25; }
+    .page-title p { margin: 0; color: var(--muted-foreground); font-size: 13px; }
     .top-actions { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
 
     .btn {
@@ -184,7 +171,7 @@
       margin: 0 0 10px;
       font-size: clamp(28px, 4vw, 42px);
       line-height: 1.08;
-      letter-spacing: -0.04em;
+      letter-spacing: -0.02em;
     }
     .intro-copy p {
       margin: 0;
@@ -193,17 +180,8 @@
       font-size: 16px;
       line-height: 1.7;
     }
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-    .stat {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 14px;
-      background: #fcfcfc;
-    }
+    .stats { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    .stat { border: 1px solid var(--border); border-radius: 6px; padding: 14px; background: #fcfcfc; }
     .stat strong { display: block; font-size: 22px; line-height: 1; margin-bottom: 6px; }
     .stat span { color: var(--muted-foreground); font-size: 13px; }
 
@@ -219,89 +197,47 @@
       width: 100%;
       border: 1px solid var(--input);
       border-radius: 6px;
-      background: var(--background);
       padding: 0 12px;
+      background: var(--card);
       color: var(--foreground);
       outline: none;
     }
-    .search:focus { border-color: var(--ring); box-shadow: 0 0 0 3px rgba(161, 161, 170, 0.18); }
-    .segmented {
-      display: inline-flex;
-      height: 38px;
-      padding: 3px;
-      border: 1px solid var(--border);
-      border-radius: 7px;
-      background: var(--muted);
-      gap: 3px;
-    }
-    .segment {
-      border: 0;
-      background: transparent;
-      color: var(--muted-foreground);
-      border-radius: 5px;
-      padding: 0 12px;
-      cursor: pointer;
-      font-size: 13px;
-      font-weight: 600;
-    }
+    .search:focus { border-color: #a1a1aa; box-shadow: 0 0 0 3px rgba(161, 161, 170, 0.18); }
+    .segmented { display: inline-flex; border: 1px solid var(--border); border-radius: 6px; padding: 3px; background: var(--muted); }
+    .segment { border: 0; border-radius: 4px; padding: 6px 10px; background: transparent; color: var(--muted-foreground); cursor: pointer; }
     .segment.active { background: var(--card); color: var(--foreground); box-shadow: var(--shadow); }
     .count { color: var(--muted-foreground); font-size: 13px; white-space: nowrap; }
 
     .grid {
+      padding: 0 14px 14px;
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 16px;
     }
     .template-card {
       overflow: hidden;
-      display: grid;
       border: 1px solid var(--border);
       border-radius: var(--radius);
       background: var(--card);
       box-shadow: var(--shadow);
     }
-    .template-card:hover { border-color: #c7c7cc; }
     .preview {
-      min-height: 190px;
-      border-bottom: 1px solid var(--border);
       position: relative;
-      padding: 18px;
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-    }
-    .preview.light { background: #fffdf5; color: #000; }
-    .preview.dark { background: #0a0a0a; color: #f6f6f6; }
-    .preview.blue { background: #fdfae7; color: #1e2bfa; }
-    .preview.purple { background: #08090d; color: #b98eff; }
-    .mock-slide {
-      width: min(92%, 360px);
+      width: 100%;
       aspect-ratio: 16 / 9;
-      border: 3px solid currentColor;
-      border-radius: 4px;
-      padding: 18px;
-      display: grid;
-      align-content: center;
-      gap: 10px;
-      background: color-mix(in srgb, currentColor 4%, transparent);
+      overflow: hidden;
+      background: #f4f4f5;
+      border-bottom: 1px solid var(--border);
     }
-    .mock-title { font-size: 22px; font-weight: 900; line-height: 1.05; letter-spacing: -0.04em; }
-    .mock-line { height: 8px; border-radius: 999px; background: currentColor; opacity: 0.28; }
-    .mock-line.short { width: 55%; }
-    .accent-block {
-      position: absolute;
-      right: 28px;
-      top: 26px;
-      width: 44px;
-      height: 44px;
-      border: 3px solid currentColor;
-      border-radius: 4px;
-      transform: rotate(8deg);
-      background: var(--accent-color, #f7cb46);
+    .preview img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
     }
     .card-body { padding: 18px; display: grid; gap: 14px; }
     .card-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
-    .card-title { margin: 0; font-size: 18px; line-height: 1.25; letter-spacing: -0.02em; }
+    .card-title { margin: 0; font-size: 18px; line-height: 1.25; letter-spacing: -0.01em; }
     .badge {
       display: inline-flex;
       align-items: center;
@@ -317,35 +253,19 @@
     }
     .description { margin: 0; color: var(--muted-foreground); line-height: 1.6; font-size: 14px; }
     .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-    .chip {
-      border: 1px solid var(--border);
-      border-radius: 6px;
-      padding: 4px 8px;
-      background: var(--background);
-      color: #52525b;
-      font-size: 12px;
-    }
+    .chip { border: 1px solid var(--border); border-radius: 6px; padding: 4px 8px; background: var(--background); color: #52525b; font-size: 12px; }
     .card-actions { display: flex; gap: 8px; flex-wrap: wrap; }
     .card-actions .btn { flex: 1; min-width: 118px; }
 
-    .workflow {
-      padding: 18px;
-      display: grid;
-      gap: 14px;
-    }
-    .workflow h2 { margin: 0; font-size: 20px; letter-spacing: -0.02em; }
+    .workflow { padding: 18px; display: grid; gap: 14px; }
+    .workflow h2 { margin: 0; font-size: 20px; letter-spacing: -0.01em; }
     .workflow-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; }
     .workflow-item { border: 1px solid var(--border); border-radius: 6px; padding: 14px; background: #fcfcfc; }
     .workflow-item code { font-family: var(--font-mono); font-size: 12px; color: var(--muted-foreground); }
     .workflow-item strong { display: block; margin: 7px 0 4px; }
     .workflow-item p { margin: 0; color: var(--muted-foreground); font-size: 13px; line-height: 1.55; }
 
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 28px 24px;
-      color: var(--muted-foreground);
-      font-size: 13px;
-    }
+    footer { border-top: 1px solid var(--border); padding: 28px 24px; color: var(--muted-foreground); font-size: 13px; }
     footer .footer-inner { max-width: 1180px; margin: 0 auto; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
     footer a { text-decoration: underline; text-underline-offset: 3px; }
 
@@ -380,7 +300,7 @@
         <a class="nav-link" href="templates/presentation.html"><span>基础模板</span><code>html</code></a>
         <a class="nav-link" href="https://www.bilibili.com/video/BV1g5j46iE5C/?spm_id_from=333.1387.homepage.video_card.click&vd_source=a44f29c4f18178d5fbf00c97794d0f32" target="_blank" rel="noreferrer"><span>视频教程</span><code>B站</code></a>
       </div>
-      <div class="sidebar-note">Notion 风格的静态模板库首页。无需构建步骤，GitHub Pages 可直接托管。</div>
+      <div class="sidebar-note">Notion 风格的静态模板库首页。无需构建步骤，GitHub Pages 可以直接托管。</div>
     </aside>
 
     <main id="top">
@@ -406,7 +326,7 @@
           <div class="stats" aria-label="项目统计">
             <div class="stat"><strong>4</strong><span>视频友好模板</span></div>
             <div class="stat"><strong>10vw</strong><span>默认安全边距</span></div>
-            <div class="stat"><strong>1920×1080</strong><span>截图导出目标</span></div>
+            <div class="stat"><strong>16:9</strong><span>真实封面截图</span></div>
             <div class="stat"><strong>0 build</strong><span>纯静态部署</span></div>
           </div>
         </section>
@@ -427,7 +347,7 @@
         <section id="workflow" class="panel workflow" aria-labelledby="workflow-title">
           <h2 id="workflow-title">GitHub Pages 发布建议</h2>
           <div class="workflow-grid">
-            <div class="workflow-item"><code>01</code><strong>提交模板</strong><p>修改 themes 下的 template.html / design.md / template.json。</p></div>
+            <div class="workflow-item"><code>01</code><strong>提交模板</strong><p>修改 themes 下的 template.html、design.md 或 template.json。</p></div>
             <div class="workflow-item"><code>02</code><strong>自动部署</strong><p>push 到 main 或 master 后，GitHub Actions 上传当前静态站点。</p></div>
             <div class="workflow-item"><code>03</code><strong>公开访问</strong><p>GitHub Pages 会生成可分享的模板库首页链接。</p></div>
           </div>
@@ -449,8 +369,7 @@
         slug: 'blockframe',
         name: 'BlockFrame',
         scheme: 'light',
-        preview: 'light',
-        accent: '#FE90E8',
+        image: 'assets/previews/blockframe.png',
         tagline: '新粗野主义糖果色块 + 4px 粗黑边框 + 硬偏移阴影，高能量设计导向风格。',
         tags: ['创意提案', '品牌重塑', '设计评审'],
         template: 'themes/blockframe/template.html',
@@ -460,8 +379,7 @@
         slug: 'blockframe-dark',
         name: 'BlockFrame Dark',
         scheme: 'dark',
-        preview: 'dark',
-        accent: '#F7CB46',
+        image: 'assets/previews/blockframe-dark.png',
         tagline: 'BlockFrame 的夜间模式：纯黑画布 + 白色粗边框 + 糖果色强调，视频友好的高对比粗野主义风格。',
         tags: ['视频分镜', '高对比', '暗色粗野主义'],
         template: 'themes/blockframe-dark/template.html',
@@ -471,8 +389,7 @@
         slug: 'blue-professional',
         name: 'Blue Professional',
         scheme: 'light',
-        preview: 'blue',
-        accent: '#1E2BFA',
+        image: 'assets/previews/blue-professional.png',
         tagline: '奶油色纸张背景搭配电光钴蓝强调，干净现代的专业风格。',
         tags: ['B2B SaaS', '投资者更新', '咨询交付'],
         template: 'themes/blue-professional/template.html',
@@ -482,8 +399,7 @@
         slug: 'purple-gold-presentation',
         name: 'Purple Gold Presentation',
         scheme: 'dark',
-        preview: 'purple',
-        accent: '#ffc402',
+        image: 'assets/previews/purple-gold-presentation.png',
         tagline: '近黑画布、紫色标题与金色强调，适合教程、知识讲解和投资者更新。',
         tags: ['视频教程', '知识分享', '暗色电影感'],
         template: 'themes/purple-gold-presentation/template.html',
@@ -508,14 +424,9 @@
       count.textContent = `${visible.length} 个模板`;
       grid.innerHTML = visible.map((item) => `
         <article class="template-card">
-          <div class="preview ${item.preview}" style="--accent-color:${item.accent}">
-            <div class="accent-block"></div>
-            <div class="mock-slide">
-              <div class="mock-title">${item.name.replace(' ', '<br>')}</div>
-              <div class="mock-line"></div>
-              <div class="mock-line short"></div>
-            </div>
-          </div>
+          <a class="preview" href="${item.template}" target="_blank" rel="noreferrer" aria-label="预览 ${item.name}">
+            <img src="${item.image}" alt="${item.name} 封面页截图" loading="lazy">
+          </a>
           <div class="card-body">
             <div class="card-head">
               <h3 class="card-title">${item.name}</h3>
