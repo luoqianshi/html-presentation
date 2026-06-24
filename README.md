@@ -1,36 +1,67 @@
 # HTML Presentation · 视频友好版
 
-一套专为**视频演示**优化的 HTML 幻灯片工具。适合 B 站讲解视频、知识分享、教程分镜、investor update 等需要把幻灯片导出为高清 PNG/视频帧的场景。
+<p align="center">
+  <strong>用 HTML 做视频分镜的更好方式</strong>
+</p>
 
-> 📺 **视频教程**：[本项目使用教程](https://www.bilibili.com/video/BV1HToiBCEwg)
-> 🎬 **视频教程**：[开源！用HTML替代PPT做分镜，我踩完坑了！](https://www.bilibili.com/video/BV1g5j46iE5C/?spm_id_from=333.1387.homepage.video_card.click&vd_source=a44f29c4f18178d5fbf00c97794d0f32)
+<p align="center">
+  专为 <strong>B 站讲解视频</strong>、<strong>知识分享</strong>、<strong>教程分镜</strong> 优化的 HTML 幻灯片工具。
+</p>
 
-与原项目相比，本版本更强调：
+<p align="center">
+  <a href="https://www.bilibili.com/video/BV1HToiBCEwg">📺 项目使用教程</a> ·
+  <a href="https://www.bilibili.com/video/BV1g5j46iE5C">🎬 为什么用 HTML 替代 PPT</a> ·
+  <a href="https://juanjuanjie.github.io/html-presentation/">🌐 在线模板广场</a>
+</p>
 
-- **字号更大**：标题与正文整体放大，远距离/小屏幕都清晰可读。
-- **信息密度更低**：每页一个重点，避免信息过载。
-- **左右大留白**：`10vw` 边距，避免被平台字幕、头像、按钮遮挡。
-- **高对比配色**：深黑背景 + 紫色/黄色强调，视频压缩后依然清晰。
-- **单文件输出**：所有 CSS、JS 内联，复制一个 HTML 即可开始制作。
+---
 
+## 这是什么？
 
-## GitHub Pages 模板库首页
+这是一个把 **HTML 幻灯片** 变成 **视频分镜素材** 的工作流：
 
-项目根目录的 [`index.html`](./index.html) 是一个 Notion / shadcn 风格的静态模板目录页，会以卡片形式展示 `themes/` 下的各个 HTML 模板，并提供实时预览和设计文档入口。
+- 用纯文本写内容，AI 可以直接帮你生成和修改。
+- 浏览器实时预览翻页节奏。
+- 运行一条命令，导出 1920×1080 PNG 序列。
+- 直接拖进剪辑软件，开始剪视频。
 
-本项目已内置 GitHub Actions workflow：`.github/workflows/pages.yml`。上传到 GitHub 后，在仓库的 **Settings → Pages** 中选择 **GitHub Actions** 作为部署来源；之后每次 push 到 `main` 或 `master` 分支，都会自动部署最新的模板库首页到 GitHub Pages。
+相比传统 PPT，它更适合被 AI 接管、被 Git 版本控制、被脚本批量处理。
+
+## 核心特点
+
+| 特性 | 说明 |
+|------|------|
+| **字号更大** | 标题与正文整体放大，远距离 / 小屏幕都清晰可读。 |
+| **信息密度更低** | 每页一个重点，标题即结论。 |
+| **左右大留白** | `10vw` 边距，避免被平台字幕、头像、按钮遮挡。 |
+| **高对比配色** | 深黑背景 + 紫色/黄色强调，视频压缩后依然清晰。 |
+| **单文件输出** | 所有 CSS、JS 内联，复制一个 HTML 即可开始制作。 |
+| **一键导出 PNG** | 自动隐藏控件，输出干净分镜图。 |
+
+## 在线模板广场
+
+项目根目录的 [`index.html`](./index.html) 是一个静态模板目录页，会展示 `themes/` 下的各个 HTML 模板：
+
+- **BlockFrame** — 新粗野主义糖果色块 + 粗黑边框
+- **BlockFrame Dark** — 纯黑画布 + 白色粗边框 + 荧光色强调
+- **Blue Professional** — 奶油色纸张 + 电光钴蓝，干净专业
+- **Purple Gold Presentation** — 近黑电影感 + 紫/金强调
+
+每个模板卡片都提供「实时预览」和「设计文档」入口。
+
+本项目已配置 GitHub Actions（`.github/workflows/pages.yml`）。上传到 GitHub 后，在仓库 **Settings → Pages** 中选择 **GitHub Actions** 作为部署来源，每次 push 到 `main` 都会自动部署到 GitHub Pages。
 
 ## 快速开始
 
 ### 1. 创建演示文稿
 
-复制基础模板：
+复制一个主题模板：
 
 ```bash
-cp templates/presentation.html my-presentation.html
+cp themes/purple-gold-presentation/template.html my-presentation.html
 ```
 
-用浏览器直接打开 `my-presentation.html`，按页面注释添加 `<section class="slide">...</section>` 内容即可。
+用浏览器打开 `my-presentation.html`，按页面注释添加 `<section class="slide">...</section>` 内容即可。
 
 ### 2. 导出 PNG 分镜
 
@@ -44,7 +75,7 @@ playwright install chromium
 导出幻灯片图片：
 
 ```bash
-python screenshot_html_slides.py themes/blue-professional/template.html -o slides_out
+python screenshot_html_slides.py themes/purple-gold-presentation/template.html -o slides_out
 ```
 
 输出为 `slides_out/page_1.png`、`slides_out/page_2.png`...，分辨率 1920×1080，可直接拖入剪辑软件。
@@ -52,15 +83,20 @@ python screenshot_html_slides.py themes/blue-professional/template.html -o slide
 ## 目录结构
 
 ```
-html-presentation-video/
+html-presentation/
 ├── README.md                          # 本文件
-├── SKIL.md                            # 视频友好设计规范
+├── SKILL.md                           # 视频友好设计规范
+├── NOTICE.md                          # 致谢与来源声明
+├── LICENSE                            # MIT 许可证
 ├── requirements.txt                   # Python 依赖
 ├── .gitignore                         # Git 忽略配置
 ├── screenshot_html_slides.py          # 截图导出 1920×1080 PNG
+├── index.html                         # GitHub Pages 模板广场首页
 ├── templates/
 │   └── presentation.html              # 基础模板（复制起点）
 ├── themes/                            # 完整主题库
+│   ├── blockframe/                    # 新粗野主义亮色版
+│   ├── blockframe-dark/               # 新粗野主义暗色版
 │   ├── blue-professional/             # 蓝/米白专业风
 │   ├── purple-gold-presentation/      # 紫/金暗色电影感
 │   ├── index.json                     # 主题索引
@@ -74,6 +110,9 @@ html-presentation-video/
 │   ├── animation-patterns.md
 │   ├── html-template.md
 │   └── viewport-base.css
+└── .github/
+    └── workflows/
+        └── pages.yml                  # GitHub Pages 自动部署
 ```
 
 ## 视频友好设计要点
@@ -84,6 +123,8 @@ html-presentation-video/
 4. **主体放大**：`.content-wrapper` 默认 `transform: scale(1.45)`，让核心内容占据画面主要区域。
 5. **少装饰**：无噪点纹理、无大面积发光、无渐变文字，避免视频压缩后出现脏边。
 6. **控件自动隐藏**：截图脚本会自动隐藏翻页控件、进度条和右侧圆点，只保留干净画面。
+
+详细规范见 [`SKILL.md`](./SKILL.md)。
 
 ## 截图脚本常用参数
 
@@ -101,11 +142,20 @@ html-presentation-video/
 - 每页 slide 使用 `<section class="slide">...</section>`。
 - 当前激活 slide 使用 `.active` class，翻页只操作 class。
 - 所有样式与脚本内联，不依赖外部资源。
-- 详细规范见 `SKIL.md`。
+- 详细规范见 [`SKILL.md`](./SKILL.md)。
+
+## 作者
+
+由 [卷卷姐 juan](https://space.bilibili.com/229150291) 制作并维护。
+
+相关视频：
+
+- [开源！用 HTML 替代 PPT 做分镜，我踩完坑了！](https://www.bilibili.com/video/BV1g5j46iE5C)
+- [本项目使用教程](https://www.bilibili.com/video/BV1HToiBCEwg)
 
 ## 致谢与来源
 
-本项目是在 **Zara Zhang** 开源项目的基础上进行改编和二次开发：
+本项目是在 **[Zara Zhang](https://github.com/zarazhangrui)** 开源项目的基础上进行改编和二次开发：
 
 - [frontend-slides](https://github.com/zarazhangrui/frontend-slides) — Claude Code 插件/Skill，提供 Slide Engine、动画模式与模板选择框架。
 - [beautiful-html-templates](https://github.com/zarazhangrui/beautiful-html-templates) — 可复用的 HTML 幻灯片模板库，包含 `blue-professional`、`purple-gold-presentation` 等主题。
@@ -119,9 +169,10 @@ html-presentation-video/
 本目录是从原 `html-presentation` 整理出的**上传专用版本**，在原作者工作的基础上做了以下调整：
 
 - **视频友好化改造**：整体放大字号、降低信息密度、增加左右留白、提升对比度，删除噪点纹理，更适合视频压缩场景。
-- **精简结构**：删除 `.git/`、`__pycache__/`、生成日志、截图缓存等冗余文件；删除具体项目输出（如 `vibecoding-ep03/`、`口播稿.md`）。
-- **精简主题库**：保留最适用于视频演示的 `blockframe`、`blue-professional` 和 `purple-gold-presentation`，并更新了索引与说明文档。
+- **精简结构**：删除 `.git/`、`__pycache__/`、生成日志、截图缓存等冗余文件；删除具体项目输出。
+- **精简主题库**：保留最适用于视频演示的 `blockframe`、`blockframe-dark`、`blue-professional` 和 `purple-gold-presentation`，并更新了索引与说明文档。
 - **改进截图脚本**：自动隐藏更多模板自带的导航控件，导出画面更干净。
+- **新增模板广场首页**：`index.html` 可直接部署到 GitHub Pages，方便浏览和预览主题。
 
 ## License
 
