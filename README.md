@@ -3,6 +3,7 @@
 一套专为**视频演示**优化的 HTML 幻灯片工具。适合 B 站讲解视频、知识分享、教程分镜、investor update 等需要把幻灯片导出为高清 PNG/视频帧的场景。
 
 > 📺 **视频教程**：[本项目使用教程](https://www.bilibili.com/video/BV1HToiBCEwg)
+> 🎬 **视频教程**：[开源！用HTML替代PPT做分镜，我踩完坑了！](https://www.bilibili.com/video/BV1g5j46iE5C/?spm_id_from=333.1387.homepage.video_card.click&vd_source=a44f29c4f18178d5fbf00c97794d0f32)
 
 与原项目相比，本版本更强调：
 
@@ -11,6 +12,13 @@
 - **左右大留白**：`10vw` 边距，避免被平台字幕、头像、按钮遮挡。
 - **高对比配色**：深黑背景 + 紫色/黄色强调，视频压缩后依然清晰。
 - **单文件输出**：所有 CSS、JS 内联，复制一个 HTML 即可开始制作。
+
+
+## GitHub Pages 模板库首页
+
+项目根目录的 [`index.html`](./index.html) 是一个 Notion / shadcn 风格的静态模板目录页，会以卡片形式展示 `themes/` 下的各个 HTML 模板，并提供实时预览和设计文档入口。
+
+本项目已内置 GitHub Actions workflow：`.github/workflows/pages.yml`。上传到 GitHub 后，在仓库的 **Settings → Pages** 中选择 **GitHub Actions** 作为部署来源；之后每次 push 到 `main` 或 `master` 分支，都会自动部署最新的模板库首页到 GitHub Pages。
 
 ## 快速开始
 

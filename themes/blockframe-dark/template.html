@@ -22,8 +22,8 @@
       --muted: #a0a0a0;
       --border-color: #f6f6f6;
       --border: 4px solid var(--border-color);
-      --shadow: 8px 8px 0px rgba(246, 246, 246, 0.15);
-      --shadow-sm: 4px 4px 0px rgba(246, 246, 246, 0.15);
+      --shadow: 8px 8px 0px var(--yellow);
+      --shadow-sm: 4px 4px 0px var(--yellow);
       --glow-pink: 0 0 24px rgba(254, 144, 232, 0.35);
       --glow-blue: 0 0 24px rgba(192, 247, 254, 0.30);
       --glow-green: 0 0 24px rgba(153, 232, 133, 0.30);
@@ -50,9 +50,9 @@
 
     /* Utility */
     .nb-label {
-      display: inline-block; border: 3px solid var(--border-color);
-      padding: 8px 18px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 14px; font-weight: 700; letter-spacing: 0.08em;
+      display: inline-block; border: 4px solid var(--border-color);
+      padding: 12px 28px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 22px; font-weight: 800; letter-spacing: 0.08em;
       text-transform: uppercase; background: var(--card);
       box-shadow: var(--shadow-sm); color: var(--white);
     }
@@ -62,6 +62,14 @@
     .nb-label-cream { background: var(--cream); color: var(--black); }
     .nb-label-blue { background: var(--blue); color: var(--black); }
 
+    .nb-btn {
+      display: inline-block; border: 3px solid var(--border-color);
+      padding: 14px 32px; font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 700; font-size: 20px; text-decoration: none;
+      color: var(--black); background: var(--yellow);
+      box-shadow: var(--shadow-sm); cursor: pointer; transition: all 0.15s ease;
+    }
+    .nb-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--yellow); }
     .nb-card {
       border: var(--border); background: var(--card);
       box-shadow: var(--shadow);
@@ -88,12 +96,12 @@
       line-height: 1.2; color: var(--white);
     }
     .nb-body {
-      font-size: clamp(17px, 1.5vw, 24px);
+      font-size: clamp(20px, 1.7vw, 28px);
       line-height: 1.65; font-weight: 500; color: var(--muted);
     }
     .nb-mono {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-weight: 600; font-size: 15px; letter-spacing: 0.05em;
+      font-weight: 600; font-size: 22px; letter-spacing: 0.05em;
       text-transform: uppercase; color: var(--white);
     }
 
@@ -113,15 +121,15 @@
     .nav-btn {
       width: 48px; height: 48px; border: 3px solid var(--border-color);
       background: var(--card); cursor: pointer; color: var(--white);
-      font-weight: 700; font-size: 18px;
+      font-weight: 700; font-size: 22px;
       display: flex; align-items: center; justify-content: center;
       box-shadow: var(--shadow-sm); transition: all 0.15s ease;
     }
-    .nav-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px rgba(246,246,246,0.25); }
+    .nav-btn:hover { transform: translate(-2px, -2px); box-shadow: 6px 6px 0px var(--yellow); }
     .slide-counter {
       position: fixed; bottom: 24px; left: 24px; z-index: 1000;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-weight: 700; font-size: 14px; letter-spacing: 0.1em;
+      font-weight: 700; font-size: 17px; letter-spacing: 0.1em;
       text-transform: uppercase; border: 3px solid var(--border-color);
       background: var(--card); color: var(--white); padding: 10px 18px;
       box-shadow: var(--shadow-sm);
@@ -141,7 +149,7 @@
     .slide-1 .hero-title { margin-bottom: 28px; }
     .slide-1 .hero-subtitle {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: clamp(16px, 1.4vw, 22px); font-weight: 600;
+      font-size: clamp(20px, 1.7vw, 28px); font-weight: 600;
       max-width: 580px; line-height: 1.6; color: var(--muted);
     }
     .slide-1 .deco-pink-rect {
@@ -157,26 +165,27 @@
       box-shadow: var(--glow-green);
     }
     .slide-1 .deco-yellow-bar {
-      position: absolute; bottom: -18px; left: 90px; width: 150px; height: 38px;
+      position: absolute; bottom: -28px; left: 90px; width: 230px; height: 60px;
       background: var(--yellow); border: var(--border); box-shadow: var(--glow-yellow);
       transform: rotate(-3deg); display: flex; align-items: center; justify-content: center;
-      font-family: 'Space Grotesk', 'Noto Sans SC', monospace; font-size: 13px; font-weight: 700;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace; font-size: 20px; font-weight: 800;
       color: var(--black); z-index: 5;
-    }
-    .slide-1 .deco-dots {
-      position: absolute; top: 50px; left: 50px;
-      width: 120px; height: 80px;
-      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
-      background-size: 20px 20px; opacity: 0.25;
     }
 
     /* SLIDE 2: Two Column Intro */
     .slide-2 {
       background: var(--black);
-      flex-direction: row; gap: 56px; align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px;
+      align-content: center;
+      align-items: stretch;
+    }
+    .slide-2.active {
+      display: grid;
     }
     .slide-2 .col-left {
       flex: 1; display: flex; flex-direction: column; gap: 28px;
+      height: 100%;
     }
     .slide-2 .col-right {
       flex: 1; display: flex; flex-direction: column; gap: 22px;
@@ -187,18 +196,20 @@
     }
     .slide-2 .intro-card h3 {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      font-weight: 800; font-size: clamp(18px, 1.6vw, 24px);
+      font-weight: 800; font-size: clamp(22px, 1.9vw, 30px);
       margin-bottom: 12px; text-transform: uppercase; color: var(--white);
     }
     .slide-2 .intro-card p {
-      font-size: clamp(15px, 1.3vw, 20px); line-height: 1.6; font-weight: 500;
+      font-size: clamp(21px, 1.8vw, 28px); line-height: 1.6; font-weight: 500;
       color: var(--muted);
     }
     .slide-2 .stat-pill {
       display: inline-flex; align-items: center; gap: 8px;
+      margin-top: auto;
+      align-self: flex-start;
       border: 3px solid var(--border-color); padding: 10px 20px;
       background: var(--yellow); font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 14px; font-weight: 700; color: var(--black);
+      font-size: 17px; font-weight: 700; color: var(--black);
     }
 
     /* SLIDE 3: Three Feature Cards */
@@ -206,6 +217,8 @@
       background: var(--black);
       flex-direction: column; justify-content: center;
     }
+    .slide-header { display: flex; flex-direction: column; align-items: flex-start; gap: 36px; }
+    .slide-header .nb-heading-lg { margin-top: 0 !important; }
     .slide-3 .slide-header { margin-bottom: 48px; }
     .slide-3 .cards-row {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; width: 100%;
@@ -226,7 +239,7 @@
       text-transform: uppercase; color: var(--white);
     }
     .slide-3 .feature-card p {
-      font-size: clamp(15px, 1.25vw, 20px); line-height: 1.55; font-weight: 500;
+      font-size: clamp(20px, 1.7vw, 26px); line-height: 1.55; font-weight: 500;
       color: var(--muted);
     }
     .slide-3 .card-deco {
@@ -237,14 +250,17 @@
     /* SLIDE 4: Chart / Data */
     .slide-4 {
       background: var(--black);
-      flex-direction: column; justify-content: center;
+      flex-direction: column; justify-content: center; gap: 48px;
       padding-bottom: 110px;
+    }
+    .slide-4 .slide-header {
+      flex-shrink: 0; width: 100%; max-width: 1200px; margin: 0 auto;
     }
     .slide-4 .chart-frame {
       border: var(--border); background: var(--card);
       box-shadow: var(--shadow); padding: 32px 40px;
       width: calc(100% - 16px); max-width: 1200px; margin: 0 auto;
-      max-height: 70vh; display: flex; flex-direction: column; gap: 20px;
+      max-height: 62vh; display: flex; flex-direction: column; gap: 20px;
       overflow: hidden;
     }
     .slide-4 .chart-header {
@@ -255,7 +271,7 @@
     .slide-4 .legend-item {
       display: flex; align-items: center; gap: 6px;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px; font-weight: 600; color: var(--white);
+      font-size: 17px; font-weight: 600; color: var(--white);
     }
     .slide-4 .legend-swatch {
       width: 16px; height: 16px; border: 2px solid var(--border-color);
@@ -284,7 +300,7 @@
     }
     .slide-4 .data-box .data-label {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      font-size: 17px; font-weight: 600; text-transform: uppercase;
       color: var(--muted);
     }
 
@@ -307,19 +323,13 @@
     }
     .slide-5 .quote-author {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 15px; font-weight: 600; color: var(--muted);
+      font-size: 22px; font-weight: 600; color: var(--muted);
       letter-spacing: 0.05em; text-transform: uppercase;
     }
     .slide-5 .deco-quote-marks {
       position: absolute; top: -30px; left: 40px;
       font-size: 120px; font-weight: 900; line-height: 1;
-      color: var(--black); -webkit-text-stroke: 3px var(--border-color);
-    }
-    .slide-5 .deco-stripes {
-      position: absolute; bottom: 60px; right: 60px;
-      width: 80px; height: 80px;
-      background: repeating-linear-gradient(45deg, var(--border-color), var(--border-color) 4px, var(--green) 4px, var(--green) 12px);
-      border: 3px solid var(--border-color);
+      color: var(--yellow); -webkit-text-stroke: 3px var(--border-color);
     }
 
     /* SLIDE 6: Split Image + Text */
@@ -330,11 +340,11 @@
     .slide-6 .split-visual {
       flex: 1; background: var(--card-elevated); color: var(--white);
       display: flex; flex-direction: column; align-items: center; justify-content: center;
-      padding: 60px; position: relative; overflow: hidden;
+      padding: 72px 8vw 72px 10vw; position: relative; overflow: hidden;
       border-right: var(--border);
     }
     .slide-6 .split-visual .visual-box {
-      width: 100%; max-width: 360px; aspect-ratio: 1;
+      width: min(64vh, 82%); max-width: 440px; aspect-ratio: 1;
       border: 4px solid var(--border-color); background: var(--pink);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
@@ -347,29 +357,32 @@
       border: 4px solid var(--border-color); z-index: -1;
     }
     .slide-6 .split-visual .visual-label {
-      position: absolute; top: 40px; right: 40px;
-      border: 3px solid var(--border-color); background: var(--yellow); color: var(--black);
-      padding: 8px 16px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px; font-weight: 700; transform: rotate(-4deg);
+      position: absolute; top: 56px; left: 10vw;
+      border: 4px solid var(--border-color); background: var(--yellow); color: var(--black);
+      padding: 18px 34px; font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 28px; font-weight: 800; transform: rotate(-4deg);
     }
     .slide-6 .split-content {
-      flex: 1; padding: 60px 10vw; display: flex; flex-direction: column;
-      justify-content: center; gap: 28px; background: var(--black);
+      flex: 1; padding: 72px 10vw 72px 6vw; display: flex; flex-direction: column;
+      justify-content: center; gap: 34px; background: var(--black);
+    }
+    .slide-6 .split-content > * {
+      max-width: 720px;
     }
     .slide-6 .content-list {
-      list-style: none; display: flex; flex-direction: column; gap: 16px;
+      list-style: none; display: flex; flex-direction: column; gap: 24px;
     }
     .slide-6 .content-list li {
-      display: flex; align-items: flex-start; gap: 14px;
-      font-size: clamp(15px, 1.3vw, 20px); line-height: 1.5; font-weight: 600;
+      display: flex; align-items: flex-start; gap: 18px;
+      font-size: clamp(21px, 1.8vw, 28px); line-height: 1.5; font-weight: 600;
       color: var(--white);
     }
     .slide-6 .content-list .list-num {
-      flex-shrink: 0; width: 40px; height: 40px;
+      flex-shrink: 0; width: 48px; height: 48px;
       border: 3px solid var(--border-color); background: var(--yellow);
       display: flex; align-items: center; justify-content: center;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-weight: 700; font-size: 15px; color: var(--black);
+      font-weight: 700; font-size: 22px; color: var(--black);
     }
 
     /* SLIDE 7: Timeline / Process */
@@ -387,7 +400,8 @@
     }
     .slide-7 .timeline-step:nth-child(1) { background: var(--cream); color: var(--black); }
     .slide-7 .timeline-step:nth-child(2) { background: var(--pink); color: var(--black); }
-    .slide-7 .timeline-step:nth-child(3) { background: var(--yellow); color: var(--black); margin-right: 0; }
+    .slide-7 .timeline-step:nth-child(3) { background: var(--yellow); color: var(--black); }
+    .slide-7 .timeline-step:nth-child(4) { margin-right: 0; }
     .slide-7 .timeline-step:nth-child(-n+3) .step-desc { color: rgba(0,0,0,0.75); }
     .slide-7 .timeline-step:nth-child(-n+3) .step-title { color: var(--black); }
     .slide-7 .step-num {
@@ -401,7 +415,7 @@
       text-transform: uppercase;
     }
     .slide-7 .step-desc {
-      font-size: clamp(14px, 1.15vw, 19px); line-height: 1.55; font-weight: 500;
+      font-size: clamp(18px, 1.45vw, 24px); line-height: 1.55; font-weight: 500;
       color: var(--muted);
     }
     .slide-7 .step-connector {
@@ -437,7 +451,7 @@
     }
     .slide-8 .stat-label {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px; font-weight: 600; text-transform: uppercase;
+      font-size: 17px; font-weight: 600; text-transform: uppercase;
       letter-spacing: 0.05em; color: var(--muted);
     }
     .slide-8 .stat-deco {
@@ -448,10 +462,10 @@
     /* SLIDE 9: Team / Grid */
     .slide-9 {
       background: var(--black);
-      flex-direction: column; justify-content: center;
+      flex-direction: column; justify-content: center; gap: 48px;
       padding-bottom: 110px;
     }
-    .slide-9 .slide-header { margin-bottom: 32px; }
+    .slide-9 .slide-header { margin-bottom: 48px; }
     .slide-9 .team-grid {
       display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; width: 100%;
     }
@@ -477,11 +491,11 @@
     }
     .slide-9 .team-role {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 14px; font-weight: 500; text-transform: uppercase;
+      font-size: 17px; font-weight: 500; text-transform: uppercase;
       letter-spacing: 0.05em; color: var(--muted);
     }
     .slide-9 .team-bio {
-      font-size: 13px; line-height: 1.45; font-weight: 500; color: var(--muted);
+      font-size: 17px; line-height: 1.45; font-weight: 500; color: var(--muted);
     }
 
     /* SLIDE 10: Closing */
@@ -503,37 +517,32 @@
     }
     .slide-10 .close-subtitle {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 18px; font-weight: 500; color: var(--muted); margin-bottom: 40px;
+      font-size: 22px; font-weight: 500; color: var(--muted); margin-bottom: 40px;
     }
     .slide-10 .close-btn {
       display: inline-block; border: 3px solid var(--border-color);
       padding: 16px 40px; font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      font-weight: 700; font-size: 16px; text-decoration: none;
+      font-weight: 700; font-size: 20px; text-decoration: none;
       color: var(--black); background: var(--yellow);
-      box-shadow: 6px 6px 0px var(--border-color); cursor: pointer; transition: all 0.15s ease;
+      box-shadow: 6px 6px 0px var(--yellow); cursor: pointer; transition: all 0.15s ease;
     }
-    .slide-10 .close-btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--border-color); }
+    .slide-10 .close-btn:hover { transform: translate(-2px, -2px); box-shadow: 8px 8px 0px var(--yellow); }
     .slide-10 .deco-star {
       position: absolute; top: -20px; right: 60px;
       width: 50px; height: 50px; background: var(--yellow);
       border: 3px solid var(--border-color);
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
-    .slide-10 .deco-dots-bottom {
-      position: absolute; bottom: 40px; left: 40px;
-      width: 100px; height: 100px;
-      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
-      background-size: 16px 16px; opacity: 0.2;
-    }
 
     .highlight { background: var(--yellow); color: var(--black); padding: 0 6px; }
 
     @media (max-width: 1024px) {
-      .slide { padding: 40px; }
-      .slide-2 { flex-direction: column; }
+      .slide { padding: 40px 10vw; }
+      .slide-2 { grid-template-columns: 1fr; align-content: center; align-items: stretch; }
       .slide-6 { flex-direction: column; }
-      .slide-6 .split-visual { border-right: none; border-bottom: var(--border); }
-      .slide-6 .split-content { padding: 40px; }
+      .slide-6 .split-visual { border-right: none; border-bottom: var(--border); padding: 40px 10vw; }
+      .slide-6 .split-visual .visual-label { left: 10vw; top: 36px; }
+      .slide-6 .split-content { padding: 40px 10vw; }
       .slide-3 .cards-row { grid-template-columns: 1fr; }
       .slide-4 .chart-body { flex-direction: column; }
       .slide-4 .data-column { flex: none; width: 100%; }
@@ -564,7 +573,6 @@
 
     <!-- SLIDE 1: Title Hero -->
     <section class="slide slide-1 active">
-      <div class="deco-dots"></div>
       <div class="hero-frame">
         <div class="corner-bracket tl"></div><div class="corner-bracket tr"></div>
         <div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
@@ -631,28 +639,53 @@
       </div>
       <div class="chart-frame">
         <div class="chart-header">
-          <h3 class="nb-heading-md" style="text-transform:uppercase;">季度增长</h3>
+          <h3 class="nb-heading-md" style="text-transform:uppercase;">季度增长指标</h3>
           <div class="chart-legend">
             <div class="legend-item"><div class="legend-swatch" style="background:var(--pink)"></div>收入</div>
             <div class="legend-item"><div class="legend-swatch" style="background:var(--blue)"></div>用户</div>
+            <div class="legend-item"><div class="legend-swatch" style="background:var(--green)"></div>留存</div>
           </div>
         </div>
         <div class="chart-body">
-          <svg class="chart-svg" viewBox="0 0 400 200" preserveAspectRatio="none">
-            <rect x="0" y="0" width="400" height="200" fill="var(--card-elevated)" stroke="var(--border-color)" stroke-width="2"/>
-            <polyline fill="none" stroke="var(--pink)" stroke-width="4" points="20,160 80,140 140,100 200,90 260,50 320,40 380,20"/>
-            <polyline fill="none" stroke="var(--blue)" stroke-width="4" points="20,170 80,155 140,130 200,110 260,80 320,60 380,45"/>
-            <circle cx="380" cy="20" r="5" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
-            <circle cx="380" cy="45" r="5" fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+          <svg class="chart-svg" viewBox="0 0 800 360" xmlns="http://www.w3.org/2000/svg">
+            <line x1="60" y1="20" x2="60" y2="280" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="60" y1="280" x2="780" y2="280" stroke="var(--border-color)" stroke-width="3"/>
+            <line x1="60" y1="80"  x2="780" y2="80"  stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+            <line x1="60" y1="150" x2="780" y2="150" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+            <line x1="60" y1="215" x2="780" y2="215" stroke="var(--border-color)" stroke-width="1" stroke-dasharray="4,4" opacity="0.35"/>
+            <text x="48" y="285" text-anchor="end" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="14" font-weight="600" fill="var(--white)">0</text>
+            <text x="48" y="220" text-anchor="end" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="14" font-weight="600" fill="var(--white)">33</text>
+            <text x="48" y="155" text-anchor="end" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="14" font-weight="600" fill="var(--white)">66</text>
+            <text x="48" y="85" text-anchor="end" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="14" font-weight="600" fill="var(--white)">100</text>
+            <rect x="80"  y="200" width="32" height="80"  fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="224" y="160" width="32" height="120" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="368" y="120" width="32" height="160" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="512" y="80"  width="32" height="200" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="656" y="60"  width="32" height="220" fill="var(--pink)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="118" y="220" width="32" height="60"  fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="262" y="190" width="32" height="90"  fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="406" y="150" width="32" height="130" fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="550" y="110" width="32" height="170" fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="694" y="90"  width="32" height="190" fill="var(--blue)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="156" y="180" width="32" height="100" fill="var(--green)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="300" y="160" width="32" height="120" fill="var(--green)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="444" y="130" width="32" height="150" fill="var(--green)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="588" y="110" width="32" height="170" fill="var(--green)" stroke="var(--border-color)" stroke-width="2"/>
+            <rect x="732" y="92"  width="32" height="188" fill="var(--green)" stroke="var(--border-color)" stroke-width="2"/>
+            <text x="134" y="320" text-anchor="middle" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="18" font-weight="700" fill="var(--white)">Q1</text>
+            <text x="278" y="320" text-anchor="middle" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="18" font-weight="700" fill="var(--white)">Q2</text>
+            <text x="422" y="320" text-anchor="middle" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="18" font-weight="700" fill="var(--white)">Q3</text>
+            <text x="566" y="320" text-anchor="middle" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="18" font-weight="700" fill="var(--white)">Q4</text>
+            <text x="710" y="320" text-anchor="middle" font-family="Space Grotesk, Noto Sans SC, monospace" font-size="18" font-weight="700" fill="var(--white)">Q5</text>
           </svg>
           <div class="data-column">
             <div class="data-box"><span class="data-num">+128%</span><span class="data-label">收入增长</span></div>
-            <div class="data-box"><span class="data-num">+84%</span><span class="data-label">用户增长</span></div>
+            <div class="data-box"><span class="data-num">2.4M</span><span class="data-label">活跃用户</span></div>
+            <div class="data-box"><span class="data-num">94%</span><span class="data-label">留存率</span></div>
           </div>
         </div>
       </div>
     </section>
-
     <!-- SLIDE 5: Big Statement / Quote -->
     <section class="slide slide-5">
       <div class="quote-frame">
@@ -660,30 +693,31 @@
         <div class="quote-text">好的设计<br>是尽可能少的设计</div>
         <div class="quote-author">— Dieter Rams</div>
       </div>
-      <div class="deco-stripes"></div>
     </section>
 
     <!-- SLIDE 6: Split Image + Text -->
     <section class="slide slide-6">
       <div class="split-visual">
         <div class="visual-label">视觉焦点</div>
-        <div class="visual-box"> boldly<br>different</div>
+        <div class="visual-box">boldly<br>different</div>
       </div>
       <div class="split-content">
         <div class="nb-label nb-label-pink">章节二</div>
         <h2 class="nb-heading-lg">为什么选 BlockFrame Dark？</h2>
         <ul class="content-list">
-          <li><span class="list-num">01</span>夜间模式自带电影感，适合教程和演示视频。</li>
-          <li><span class="list-num">02</span>糖果色 accent 在黑底上饱和度更高，更抓眼。</li>
-          <li><span class="list-num">03</span>10vw 水平安全边距，B 站/YouTube 字幕也不怕挡。</li>
+          <li><span class="list-num">01</span><span>夜间模式自带电影感，适合教程和演示视频。</span></li>
+          <li><span class="list-num">02</span><span>糖果色 accent 在黑底上饱和度更高，更抓眼。</span></li>
+          <li><span class="list-num">03</span><span>10vw 水平安全边距，B 站/YouTube 字幕也不怕挡。</span></li>
+          <li><span class="list-num">04</span><span>粗边框、硬阴影和大字号让每一页都更适合视频输出。</span></li>
         </ul>
+        <div><a class="nb-btn" href="#">查看流程</a></div>
       </div>
     </section>
-
     <!-- SLIDE 7: Timeline / Process -->
     <section class="slide slide-7">
       <div class="slide-header">
         <div class="nb-label nb-label-green">三步流程</div>
+        <h2 class="nb-heading-lg">项目时间线</h2>
       </div>
       <div class="timeline">
         <div class="timeline-step">
@@ -699,17 +733,23 @@
           <div class="step-desc">把内容填入 BlockFrame Dark 的预设布局中。</div>
         </div>
         <div class="timeline-step">
+          <div class="step-connector"></div>
           <div class="step-num">03</div>
           <div class="step-title">导出 PNG</div>
           <div class="step-desc">运行截图脚本，获得干净的高清分镜图。</div>
         </div>
+        <div class="timeline-step">
+          <div class="step-num">04</div>
+          <div class="step-title">发布</div>
+          <div class="step-desc">把分镜放进剪辑流程，保持统一视觉节奏。</div>
+        </div>
       </div>
     </section>
-
     <!-- SLIDE 8: Statistics / Numbers -->
     <section class="slide slide-8">
       <div class="slide-header">
         <div class="nb-label nb-label-cream">关键指标</div>
+        <h2 class="nb-heading-lg">影响力速览</h2>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -739,6 +779,7 @@
     <section class="slide slide-9">
       <div class="slide-header">
         <div class="nb-label nb-label-pink">团队成员</div>
+        <h2 class="nb-heading-lg">认识团队</h2>
       </div>
       <div class="team-grid">
         <div class="team-card">
@@ -784,11 +825,10 @@
     <section class="slide slide-10">
       <div class="close-frame">
         <div class="deco-star"></div>
-        <div class="close-title">开始你的<br><span style="color:var(--yellow)">下一场演示</span></div>
-        <div class="close-subtitle">BlockFrame Dark 已准备好，把你的内容放进这些粗边框里。</div>
+        <h2 class="close-title">开始你的<br><span style="color:var(--yellow)">下一场演示</span></h2>
+        <p class="close-subtitle">BlockFrame Dark 已准备好，把你的内容放进这些粗边框里。</p>
         <a href="#" class="close-btn">立即开始</a>
       </div>
-      <div class="deco-dots-bottom"></div>
     </section>
 
   </div>

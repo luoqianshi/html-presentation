@@ -53,7 +53,7 @@
       width: 100vw;
       height: 100vh;
       display: none;
-      padding: 60px;
+      padding: 60px 10vw;
       overflow: hidden;
     }
 
@@ -85,7 +85,7 @@
       cursor: pointer;
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 18px;
+      font-size: 24px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -110,7 +110,7 @@
       z-index: 1000;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 17px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       border: 3px solid var(--black);
@@ -134,12 +134,12 @@
 
     .nb-label {
       display: inline-block;
-      border: 3px solid var(--black);
-      padding: 6px 16px;
+      border: 4px solid var(--black);
+      padding: 12px 28px;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
-      font-weight: 600;
-      letter-spacing: 0.08em;
+      font-size: 24px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       background: var(--white);
       box-shadow: var(--shadow-sm);
@@ -157,7 +157,7 @@
       padding: 14px 32px;
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 24px;
       text-decoration: none;
       color: var(--black);
       background: var(--yellow);
@@ -199,7 +199,7 @@
 
     .nb-body {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
-      font-size: clamp(16px, 1.2vw, 20px);
+      font-size: clamp(20px, 1.5vw, 26px);
       line-height: 1.6;
       font-weight: 500;
     }
@@ -207,7 +207,7 @@
     .nb-mono {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
       font-weight: 500;
-      font-size: 15px;
+      font-size: 24px;
       letter-spacing: 0.02em;
     }
 
@@ -264,7 +264,7 @@
 
     .slide-1 .hero-subtitle {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 500;
       max-width: 500px;
     }
@@ -300,8 +300,8 @@
       position: absolute;
       bottom: -18px;
       left: 80px;
-      width: 140px;
-      height: 36px;
+      width: 220px;
+      height: 58px;
       background: var(--yellow);
       border: var(--border);
       box-shadow: var(--shadow-sm);
@@ -310,35 +310,30 @@
       align-items: center;
       justify-content: center;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 24px;
+      font-weight: 800;
       z-index: 5;
     }
 
-    .slide-1 .deco-dots {
-      position: absolute;
-      top: 60px;
-      left: 60px;
-      width: 120px;
-      height: 80px;
-      background-image: radial-gradient(circle, var(--black) 2px, transparent 2px);
-      background-size: 20px 20px;
-      opacity: 0.4;
-    }
 
     /* ============ SLIDE 2: TWO COLUMN INTRO ============ */
     .slide-2 {
       background: var(--offwhite);
-      flex-direction: row;
-      gap: 48px;
-      align-items: center;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 56px;
+      align-content: center;
+      align-items: stretch;
+    }
+    .slide-2.active {
+      display: grid;
     }
 
     .slide-2 .col-left {
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 24px;
+      gap: 28px;
+      height: 100%;
     }
 
     .slide-2 .col-right {
@@ -358,13 +353,13 @@
     .slide-2 .intro-card h3 {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 24px;
       margin-bottom: 12px;
       text-transform: uppercase;
     }
 
     .slide-2 .intro-card p {
-      font-size: 15px;
+      font-size: 24px;
       line-height: 1.6;
       font-weight: 500;
     }
@@ -373,11 +368,13 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      margin-top: auto;
+      align-self: flex-start;
       border: 3px solid var(--black);
       padding: 10px 20px;
       background: var(--yellow);
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 600;
     }
 
@@ -388,6 +385,15 @@
       justify-content: center;
     }
 
+    .slide-header {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 36px;
+    }
+    .slide-header .nb-heading-lg {
+      margin-top: 0 !important;
+    }
     .slide-3 .slide-header {
       margin-bottom: 48px;
     }
@@ -426,13 +432,13 @@
     .slide-3 .feature-card h3 {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 22px;
+      font-size: 24px;
       margin-bottom: 14px;
       text-transform: uppercase;
     }
 
     .slide-3 .feature-card p {
-      font-size: 15px;
+      font-size: 24px;
       line-height: 1.6;
       font-weight: 500;
     }
@@ -452,9 +458,17 @@
       background: var(--cream);
       flex-direction: column;
       justify-content: center;
+      gap: 48px;
       /* Reserve space for the shadow + the bottom-fixed nav chrome
          so the chart-frame never butts up against the slide edge. */
       padding-bottom: 110px;
+    }
+
+    .slide-4 .slide-header {
+      flex-shrink: 0;
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
     }
 
     .slide-4 .chart-frame {
@@ -467,7 +481,7 @@
       margin: 0 auto;
       /* Cap the frame so it always fits inside the slide content area
          (slide is 100vh - 60 top - 110 bottom = ~70vh available). */
-      max-height: 70vh;
+      max-height: 62vh;
       display: flex;
       flex-direction: column;
       gap: 20px;
@@ -491,7 +505,7 @@
       align-items: center;
       gap: 6px;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
+      font-size: 17px;
       font-weight: 600;
     }
 
@@ -558,7 +572,7 @@
 
     .slide-4 .data-box .data-label {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
+      font-size: 17px;
       font-weight: 600;
       text-transform: uppercase;
     }
@@ -594,7 +608,7 @@
 
     .slide-5 .quote-author {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 15px;
+      font-size: 24px;
       font-weight: 600;
       letter-spacing: 0.05em;
       text-transform: uppercase;
@@ -611,21 +625,6 @@
       -webkit-text-stroke: 3px var(--black);
     }
 
-    .slide-5 .deco-stripes {
-      position: absolute;
-      bottom: 60px;
-      right: 60px;
-      width: 80px;
-      height: 80px;
-      background: repeating-linear-gradient(
-        45deg,
-        var(--black),
-        var(--black) 4px,
-        var(--green) 4px,
-        var(--green) 12px
-      );
-      border: 3px solid var(--black);
-    }
 
     /* ============ SLIDE 6: SPLIT IMAGE + TEXT ============ */
     .slide-6 {
@@ -642,14 +641,14 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 60px;
+      padding: 72px 8vw 72px 10vw;
       position: relative;
       overflow: hidden;
     }
 
     .slide-6 .split-visual .visual-box {
-      width: 100%;
-      max-width: 400px;
+      width: min(64vh, 82%);
+      max-width: 440px;
       aspect-ratio: 1;
       border: 4px solid var(--white);
       background: var(--cream);
@@ -672,52 +671,54 @@
     }
 
     .slide-6 .split-visual .visual-label {
-      /* Top-right of the dark panel so it never collides with the
-         fixed slide-counter pill at bottom-left of the viewport. */
       position: absolute;
-      top: 40px;
-      right: 40px;
-      border: 3px solid var(--white);
+      top: 56px;
+      left: 10vw;
+      border: 4px solid var(--white);
       background: var(--cream);
       color: var(--black);
-      padding: 8px 16px;
+      padding: 18px 34px;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
-      font-weight: 600;
+      font-size: 28px;
+      font-weight: 800;
       transform: rotate(-4deg);
     }
 
     .slide-6 .split-content {
       flex: 1;
-      padding: 60px;
+      padding: 72px 10vw 72px 6vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: 28px;
+      gap: 34px;
       background: var(--offwhite);
       border-left: var(--border);
+    }
+
+    .slide-6 .split-content > * {
+      max-width: 720px;
     }
 
     .slide-6 .content-list {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 16px;
+      gap: 24px;
     }
 
     .slide-6 .content-list li {
       display: flex;
       align-items: flex-start;
-      gap: 14px;
-      font-size: 16px;
+      gap: 18px;
+      font-size: 24px;
       line-height: 1.5;
       font-weight: 500;
     }
 
     .slide-6 .content-list .list-num {
       flex-shrink: 0;
-      width: 36px;
-      height: 36px;
+      width: 46px;
+      height: 46px;
       border: 3px solid var(--black);
       background: var(--yellow);
       display: flex;
@@ -725,7 +726,7 @@
       justify-content: center;
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
       font-weight: 700;
-      font-size: 14px;
+      font-size: 20px;
     }
 
     /* ============ SLIDE 7: TIMELINE / PROCESS ============ */
@@ -784,13 +785,13 @@
     .slide-7 .step-title {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 24px;
       text-transform: uppercase;
       margin-bottom: 10px;
     }
 
     .slide-7 .step-desc {
-      font-size: 14px;
+      font-size: 17px;
       line-height: 1.5;
       font-weight: 500;
     }
@@ -851,7 +852,7 @@
 
     .slide-8 .stat-label {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 13px;
+      font-size: 17px;
       font-weight: 600;
       text-transform: uppercase;
       letter-spacing: 0.05em;
@@ -878,7 +879,7 @@
     }
 
     .slide-9 .slide-header {
-      margin-bottom: 32px;
+      margin-bottom: 48px;
     }
 
     .slide-9 .team-grid {
@@ -922,20 +923,20 @@
     .slide-9 .team-name {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 20px;
+      font-size: 24px;
       text-transform: uppercase;
     }
 
     .slide-9 .team-role {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 14px;
+      font-size: 17px;
       font-weight: 500;
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
     .slide-9 .team-bio {
-      font-size: 13px;
+      font-size: 17px;
       line-height: 1.45;
       font-weight: 500;
     }
@@ -971,7 +972,7 @@
 
     .slide-10 .close-subtitle {
       font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
-      font-size: 18px;
+      font-size: 24px;
       font-weight: 500;
       color: var(--cream);
       margin-bottom: 40px;
@@ -983,7 +984,7 @@
       padding: 16px 40px;
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 700;
-      font-size: 16px;
+      font-size: 24px;
       text-decoration: none;
       color: var(--black);
       background: var(--yellow);
@@ -1008,31 +1009,31 @@
       clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
     }
 
-    .slide-10 .deco-dots-bottom {
-      position: absolute;
-      bottom: 40px;
-      left: 40px;
-      width: 100px;
-      height: 100px;
-      background-image: radial-gradient(circle, var(--white) 2px, transparent 2px);
-      background-size: 16px 16px;
-      opacity: 0.3;
-    }
 
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .slide {
-        padding: 40px;
+        padding: 40px 10vw;
       }
       .slide-2 {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        align-content: center;
+        align-items: stretch;
       }
       .slide-6 {
         flex-direction: column;
       }
+      .slide-6 .split-visual {
+        padding: 40px 10vw;
+      }
+      .slide-6 .split-visual .visual-label {
+        left: 10vw;
+        top: 36px;
+      }
       .slide-6 .split-content {
         border-left: none;
         border-top: var(--border);
+        padding: 40px 10vw;
       }
       .slide-3 .cards-row {
         flex-direction: column;
@@ -1084,7 +1085,6 @@
 
     <!-- SLIDE 1: Title Hero -->
     <section class="slide slide-1 active">
-      <div class="deco-dots"></div>
       <div class="hero-frame">
         <div class="corner-bracket tl"></div>
         <div class="corner-bracket tr"></div>
@@ -1134,19 +1134,19 @@
       <div class="cards-row">
         <div class="feature-card">
           <div class="card-deco"></div>
-          <div class="feature-icon icon-pink">甲</div>
+          <div class="feature-icon icon-pink">A</div>
           <h3>模块化布局</h3>
           <p>自由组合组件，无需从零开始即可构建独特演示。</p>
         </div>
         <div class="feature-card">
           <div class="card-deco"></div>
-          <div class="feature-icon icon-cream">乙</div>
+          <div class="feature-icon icon-cream">B</div>
           <h3>响应式适配</h3>
           <p>在不同屏幕尺寸间无缝适配，同时保持大胆的视觉特征。</p>
         </div>
         <div class="feature-card">
           <div class="card-deco"></div>
-          <div class="feature-icon icon-green">丙</div>
+          <div class="feature-icon icon-green">C</div>
           <h3>数据友好</h3>
           <p>内置图表、统计与信息密集幻灯片的样式，始终清晰可读。</p>
         </div>
@@ -1239,16 +1239,15 @@
         <div class="corner-bracket bl"></div>
         <div class="corner-bracket br"></div>
         <p class="quote-text">设计不只是外表。设计是它如何运作、如何感受、如何经久耐用。</p>
-        <p class="quote-author">—— 核心原则，第 4 版</p>
+        <p class="quote-author">—— 核心原则，第 4 条</p>
       </div>
-      <div class="deco-stripes"></div>
     </section>
 
     <!-- SLIDE 6: Split Image + Text -->
     <section class="slide slide-6">
       <div class="split-visual">
         <div class="visual-box">
-          <span style="color: var(--black); font-family: Inter, 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 22px; text-align: center; padding: 0 24px;">图片占位</span>
+          <span style="color: var(--black); font-family: Inter, 'Noto Sans SC', sans-serif; font-weight: 700; font-size: 24px; text-align: center; padding: 0 24px;">图片占位</span>
         </div>
         <div class="visual-label">视觉系统</div>
       </div>
@@ -1281,7 +1280,7 @@
     <section class="slide slide-7">
       <div class="slide-header">
         <div class="nb-label nb-label-cream">路线图</div>
-        <h2 class="nb-heading-lg" style="margin-top: 16px;">项目时间线</h2>
+        <h2 class="nb-heading-lg">项目时间线</h2>
       </div>
       <div class="timeline">
         <div class="timeline-step">
@@ -1314,7 +1313,7 @@
     <section class="slide slide-8">
       <div class="slide-header">
         <div class="nb-label nb-label-green">数据一览</div>
-        <h2 class="nb-heading-lg" style="margin-top: 16px;">影响力速览</h2>
+        <h2 class="nb-heading-lg">影响力速览</h2>
       </div>
       <div class="stats-grid">
         <div class="stat-card">
@@ -1344,7 +1343,7 @@
     <section class="slide slide-9">
       <div class="slide-header">
         <div class="nb-label nb-label-pink">团队</div>
-        <h2 class="nb-heading-lg" style="margin-top: 16px;">认识团队</h2>
+        <h2 class="nb-heading-lg">认识团队</h2>
       </div>
       <div class="team-grid">
         <div class="team-card">
@@ -1355,7 +1354,7 @@
         </div>
         <div class="team-card">
           <div class="team-avatar">史</div>
-          <div class="team-name">史艾文</div>
+          <div class="team-name">史艾伦</div>
           <div class="team-role">技术总监</div>
           <div class="team-bio">将设计系统转化为可扩展的技术架构与工作流。</div>
         </div>
@@ -1373,7 +1372,7 @@
         </div>
         <div class="team-card">
           <div class="team-avatar">帕</div>
-          <div class="team-name">帕特尔</div>
+          <div class="team-name">帕特里克</div>
           <div class="team-role">设计师</div>
           <div class="team-bio">以极致细节打磨界面与交互。</div>
         </div>
@@ -1388,7 +1387,6 @@
 
     <!-- SLIDE 10: Closing -->
     <section class="slide slide-10">
-      <div class="deco-dots-bottom"></div>
       <div class="close-frame">
         <div class="deco-star"></div>
         <h2 class="close-title">一起打造<br>大胆的作品</h2>
