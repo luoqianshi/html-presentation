@@ -1,6 +1,7 @@
 # Output
 slides_out/
 *.log
+slide_concat*.txt
 
 # Python
 __pycache__/

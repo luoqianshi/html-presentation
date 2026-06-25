@@ -40,12 +40,16 @@
 
 ## 在线模板广场
 
-项目根目录的 [`index.html`](./index.html) 是一个静态模板目录页，会展示 `themes/` 下的各个 HTML 模板：
+项目根目录的 [`index.html`](./index.html) 是一个静态模板目录页，会展示 `themes/` 下的各个 HTML 模板。首页卡片使用 `assets/previews/` 中的真实封面截图，更新模板封面后建议重新生成对应 PNG。
 
-- **BlockFrame** — 新粗野主义糖果色块 + 粗黑边框
-- **BlockFrame Dark** — 纯黑画布 + 白色粗边框 + 荧光色强调
-- **Blue Professional** — 奶油色纸张 + 电光钴蓝，干净专业
-- **Purple Gold Presentation** — 近黑电影感 + 紫/金强调
+当前模板状态：
+
+| 模板 | 页数 | 封面策略 | 适合场景 |
+|------|------|----------|----------|
+| **BlockFrame** | 11 | 第 1 页为「开源！用 HTML 替代 PPT 做分镜」项目封面，第 2 页保留原主题封面 | B 站教程、开源项目介绍、设计提案 |
+| **BlockFrame Dark** | 11 | 第 1 页为暗色项目封面，第 2 页保留原主题封面 | 暗色视频分镜、高对比教程、视觉冲击型展示 |
+| **Blue Professional** | 10 | 保留原专业商务封面 | B2B SaaS、投资者更新、咨询交付 |
+| **Purple Gold Presentation** | 10 | 第 1 页替换为「PPT 正在被 HTML 淘汰」项目封面 | 知识分享、教程视频、暗色电影感开场 |
 
 每个模板卡片都提供「实时预览」和「设计文档」入口。
 
@@ -173,6 +177,7 @@ html-presentation/
 - **精简主题库**：保留最适用于视频演示的 `blockframe`、`blockframe-dark`、`blue-professional` 和 `purple-gold-presentation`，并更新了索引与说明文档。
 - **改进截图脚本**：自动隐藏更多模板自带的导航控件，导出画面更干净。
 - **新增模板广场首页**：`index.html` 可直接部署到 GitHub Pages，方便浏览和预览主题。
+- **加入项目封面**：`blockframe` / `blockframe-dark` 默认使用开源项目封面，同时保留原主题封面；`purple-gold-presentation` 使用“PPT 正在被 HTML 淘汰”封面作为默认第一页。
 
 ## License
 
