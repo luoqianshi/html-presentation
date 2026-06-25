@@ -135,6 +135,97 @@
       box-shadow: var(--shadow-sm);
     }
 
+    /* PROJECT COVER: VIDEO STORYBOARD */
+    .slide-project-cover {
+      background: var(--black);
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+    .slide-project-cover .project-cover-frame {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      background: var(--black);
+      padding: 72px 80px;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+    .slide-project-cover .project-cover-label {
+      width: fit-content;
+      margin-bottom: 24px;
+      background: var(--blue);
+      color: var(--black);
+      font-size: 20px;
+      padding: 12px 26px;
+    }
+    .slide-project-cover .project-cover-title {
+      font-size: clamp(52px, 6vw, 96px);
+      line-height: 1.2;
+      color: var(--white);
+      text-transform: none;
+    }
+    .slide-project-cover .project-cover-title .text-yellow {
+      color: var(--yellow);
+    }
+    .slide-project-cover .project-cover-highlight {
+      position: relative;
+      display: inline-block;
+      z-index: 0;
+      background: transparent;
+      color: var(--black);
+    }
+    .slide-project-cover .project-cover-highlight::before {
+      content: "";
+      position: absolute;
+      top: 0.05em;
+      bottom: 0.05em;
+      left: -0.1em;
+      right: -0.1em;
+      background: var(--pink);
+      transform: rotate(-2deg) skewX(-4deg);
+      z-index: -1;
+    }
+    .slide-project-cover .project-cover-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: clamp(22px, 2vw, 32px);
+      font-weight: 600;
+      max-width: 800px;
+      line-height: 1.7;
+      color: rgba(255, 255, 255, 0.9);
+    }
+    .slide-project-cover .project-cover-circle {
+      position: absolute;
+      bottom: 70px;
+      right: 140px;
+      width: 64px;
+      height: 64px;
+      background: var(--green);
+      border: var(--border);
+      border-radius: 50%;
+      z-index: 5;
+      box-shadow: var(--glow-green);
+    }
+    .slide-project-cover .project-cover-badge {
+      position: absolute;
+      bottom: -18px;
+      left: 90px;
+      width: 220px;
+      height: 50px;
+      background: var(--pink);
+      border: var(--border);
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-3deg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--black);
+      z-index: 5;
+    }
     /* SLIDE 1: Title Hero */
     .slide-1 {
       background: var(--black);
@@ -571,8 +662,20 @@
 
   <div class="slides-container">
 
-    <!-- SLIDE 1: Title Hero -->
-    <section class="slide slide-1 active">
+    <!-- SLIDE 1: Project Cover -->
+    <section class="slide slide-project-cover active">
+      <div class="project-cover-frame">
+        <div>
+          <div class="nb-label project-cover-label nb-label-blue">开源工具分享</div>
+          <h1 class="nb-heading-xl project-cover-title"><span class="text-yellow">开源！</span><br>用 <mark class="project-cover-highlight">HTML</mark> 替代 PPT<br>做分镜，我踩完坑了！</h1>
+        </div>
+        <p class="project-cover-subtitle">从模板到 workflow，完整分享我趟过的路。</p>
+        <div class="project-cover-circle"></div>
+        <div class="project-cover-badge">html-presentation</div>
+      </div>
+    </section>
+    <!-- SLIDE 2: Original Theme Cover -->
+    <section class="slide slide-1">
       <div class="hero-frame">
         <div class="corner-bracket tl"></div><div class="corner-bracket tr"></div>
         <div class="corner-bracket bl"></div><div class="corner-bracket br"></div>
@@ -585,7 +688,7 @@
       </div>
     </section>
 
-    <!-- SLIDE 2: Two Column Intro -->
+    <!-- SLIDE 3: Two Column Intro -->
     <section class="slide slide-2">
       <div class="col-left">
         <div class="nb-label nb-label-pink">章节一</div>
@@ -857,6 +960,7 @@
       if (e.key === 'ArrowRight') nextSlide();
       if (e.key === 'ArrowLeft') prevSlide();
     });
+    showSlide(currentSlide);
   </script>
 </body>
 </html>
