@@ -227,20 +227,19 @@
     }
     .preview {
       display: block;
-      padding: 10px;
       border-bottom: 1px solid var(--line);
       background: #f7f7f2;
+      overflow: hidden;
     }
     .preview.dark { background: #111; }
     .preview img {
       width: 100%;
       aspect-ratio: 16 / 9;
       display: block;
-      object-fit: contain;
-      border-radius: 6px;
-      background: #fff;
+      object-fit: cover;
+      border-radius: 0;
+      background: transparent;
     }
-    .preview.dark img { background: #050505; }
     .card-body {
       padding: 16px;
       display: grid;
@@ -286,6 +285,45 @@
       color: #52525b;
       font-size: 12px;
       line-height: 1;
+    }
+    .palette {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .palette-label {
+      font-size: 12px;
+      color: var(--muted);
+    }
+    .swatch {
+      position: relative;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      border: 1px solid rgba(0, 0, 0, 0.08);
+      flex-shrink: 0;
+      cursor: pointer;
+    }
+    .swatch::after {
+      content: attr(data-color);
+      position: absolute;
+      bottom: 140%;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 4px 8px;
+      background: #111;
+      color: #fff;
+      font-size: 11px;
+      font-weight: 600;
+      border-radius: 5px;
+      white-space: nowrap;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.15s ease;
+      z-index: 10;
+    }
+    .swatch:hover::after {
+      opacity: 1;
     }
     .card-actions { display: flex; gap: 10px; flex-wrap: wrap; }
     .btn {
@@ -428,7 +466,8 @@
         scheme: 'light',
         image: 'assets/previews/blockframe.png',
         tagline: '新粗野主义糖果色块、粗黑边框与硬偏移阴影，适合高能量设计表达。',
-        tags: ['创意提案', '品牌重塑', '设计评审'],
+        palette: ['#FFFDF5', '#FE90E8', '#C0F7FE', '#99E885', '#F7CB46'],
+        tags: ['小清新'],
         template: 'themes/blockframe/template.html',
         docs: 'themes/blockframe/design.md'
       },
@@ -438,6 +477,7 @@
         scheme: 'dark',
         image: 'assets/previews/blockframe-dark.png',
         tagline: '纯黑画布、白色粗边框与糖果色强调，适合高对比的视频分镜。',
+        palette: ['#0a0a0a', '#141414', '#f6f6f6', '#F7CB46', '#FE90E8'],
         tags: ['视频分镜', '高对比', '暗色粗野主义'],
         template: 'themes/blockframe-dark/template.html',
         docs: 'themes/blockframe-dark/design.md'
@@ -448,6 +488,7 @@
         scheme: 'light',
         image: 'assets/previews/blue-professional.png',
         tagline: '奶油色纸张背景搭配电光钴蓝强调，干净现代的专业风格。',
+        palette: ['#FDFAE7', '#1E2BFA', '#111111', '#6B6B6B'],
         tags: ['B2B SaaS', '投资者更新', '咨询交付'],
         template: 'themes/blue-professional/template.html',
         docs: 'themes/blue-professional/design.md'
@@ -458,6 +499,7 @@
         scheme: 'dark',
         image: 'assets/previews/purple-gold-presentation.png',
         tagline: '近黑画布、紫色标题与金色强调，适合教程、知识讲解和投资者更新。',
+        palette: ['#08090d', '#b98eff', '#ffc402', '#f6f2e8'],
         tags: ['视频教程', '知识分享', '暗色电影感'],
         template: 'themes/purple-gold-presentation/template.html',
         docs: 'themes/purple-gold-presentation/design.md'
@@ -490,6 +532,10 @@
               <span class="badge">${item.scheme}</span>
             </div>
             <p class="description">${item.tagline}</p>
+            <div class="palette">
+              <span class="palette-label">配色</span>
+              ${item.palette.map((color) => `<span class="swatch" style="background:${color}" data-color="${color}"></span>`).join('')}
+            </div>
             <div class="chips">${item.tags.map((tag) => `<span class="chip">${tag}</span>`).join('')}</div>
             <div class="card-actions">
               <a class="btn primary" href="${item.template}" target="_blank" rel="noreferrer">实时预览</a>
