@@ -482,37 +482,46 @@
       flex-direction: column; justify-content: center;
     }
     .slide-7 .slide-header { margin-bottom: 48px; }
-    .slide-7 .timeline { display: flex; gap: 0; width: 100%; }
+    .slide-7 .timeline {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 38px;
+      width: 100%;
+      position: relative;
+      padding-top: 22px;
+    }
     .slide-7 .timeline-step {
-      flex: 1; border: var(--border); background: var(--card);
-      padding: 34px 28px; box-shadow: var(--shadow-sm);
-      position: relative; margin-right: -4px;
+      border: var(--border); background: var(--card);
+      padding: 34px 28px 30px; box-shadow: var(--shadow-sm);
+      position: relative; min-height: 280px;
       display: flex; flex-direction: column; gap: 12px;
     }
-    .slide-7 .timeline-step:nth-child(1) { background: var(--cream); color: var(--black); }
-    .slide-7 .timeline-step:nth-child(2) { background: var(--pink); color: var(--black); }
-    .slide-7 .timeline-step:nth-child(3) { background: var(--yellow); color: var(--black); }
-    .slide-7 .timeline-step:nth-child(4) { margin-right: 0; }
-    .slide-7 .timeline-step:nth-child(-n+3) .step-desc { color: rgba(0,0,0,0.75); }
-    .slide-7 .timeline-step:nth-child(-n+3) .step-title { color: var(--black); }
+    .slide-7 .timeline-step::before {
+      content: '';
+      position: absolute;
+      top: -27px;
+      left: 50%;
+      width: 34px;
+      height: 34px;
+      border: var(--border);
+      border-radius: 50%;
+      background: var(--black);
+      box-shadow: 5px 5px 0 var(--yellow);
+      transform: translateX(-50%);
+    }
     .slide-7 .step-num {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 900; font-size: clamp(40px, 4vw, 64px);
-      line-height: 1; opacity: 0.6;
+      line-height: 1; opacity: 0.6; text-align: center;
     }
     .slide-7 .step-title {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 800; font-size: clamp(18px, 1.6vw, 26px);
-      text-transform: uppercase;
+      text-transform: uppercase; text-align: center;
     }
     .slide-7 .step-desc {
       font-size: clamp(18px, 1.45vw, 24px); line-height: 1.55; font-weight: 500;
       color: var(--muted);
-    }
-    .slide-7 .step-connector {
-      position: absolute; top: 50%; right: -28px;
-      width: 28px; height: 4px; background: var(--border-color); z-index: 10;
-      transform: translateY(-50%);
     }
 
     /* SLIDE 8: Statistics / Numbers */
@@ -637,9 +646,8 @@
       .slide-3 .cards-row { grid-template-columns: 1fr; }
       .slide-4 .chart-body { flex-direction: column; }
       .slide-4 .data-column { flex: none; width: 100%; }
-      .slide-7 .timeline { flex-direction: column; }
-      .slide-7 .timeline-step { margin-right: 0; margin-bottom: -4px; }
-      .slide-7 .step-connector { display: none; }
+      .slide-7 .timeline { grid-template-columns: 1fr; gap: 22px; padding-top: 0; }
+      .slide-7 .timeline-step { min-height: auto; }
       .slide-8 .stats-grid { grid-template-columns: repeat(2, 1fr); }
       .slide-9 .team-grid { grid-template-columns: repeat(2, 1fr); }
     }
@@ -824,19 +832,16 @@
       </div>
       <div class="timeline">
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">01</div>
           <div class="step-title">准备内容</div>
           <div class="step-desc">梳理你的核心信息，每页只讲一个重点。</div>
         </div>
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">02</div>
           <div class="step-title">套用模板</div>
           <div class="step-desc">把内容填入 BlockFrame Dark 的预设布局中。</div>
         </div>
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">03</div>
           <div class="step-title">导出 PNG</div>
           <div class="step-desc">运行截图脚本，获得干净的高清分镜图。</div>

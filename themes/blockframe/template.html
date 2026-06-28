@@ -814,20 +814,25 @@
     }
 
     .slide-7 .timeline {
-      display: flex;
-      gap: 0;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 38px;
       width: 100%;
+      position: relative;
+      padding-top: 22px;
     }
 
+
     .slide-7 .timeline-step {
-      flex: 1;
       border: var(--border);
       background: var(--white);
-      padding: 32px;
+      padding: 34px 28px 30px;
       box-shadow: var(--shadow-sm);
       position: relative;
-      margin-right: -4px;
+      min-height: 280px;
+      z-index: 1;
     }
+
 
     .slide-7 .timeline-step:first-child {
       background: var(--cream);
@@ -842,17 +847,31 @@
     }
 
     .slide-7 .timeline-step:nth-child(4) {
-      background: var(--yellow);
-      margin-right: 0;
+      background: var(--cream);
+    }
+
+    .slide-7 .timeline-step::before {
+      content: '';
+      position: absolute;
+      top: -27px;
+      left: 50%;
+      width: 34px;
+      height: 34px;
+      border: var(--border);
+      border-radius: 50%;
+      background: var(--offwhite);
+      box-shadow: 5px 5px 0 var(--black);
+      transform: translateX(-50%);
     }
 
     .slide-7 .step-num {
       font-family: 'Inter', 'Noto Sans SC', sans-serif;
       font-weight: 900;
-      font-size: 48px;
+      font-size: 54px;
       line-height: 1;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
       opacity: 0.6;
+      text-align: center;
     }
 
     .slide-7 .step-title {
@@ -861,6 +880,7 @@
       font-size: 24px;
       text-transform: uppercase;
       margin-bottom: 10px;
+      text-align: center;
     }
 
     .slide-7 .step-desc {
@@ -869,16 +889,6 @@
       font-weight: 500;
     }
 
-    .slide-7 .step-connector {
-      position: absolute;
-      top: 50%;
-      right: -28px;
-      width: 28px;
-      height: 4px;
-      background: var(--black);
-      z-index: 10;
-      transform: translateY(-50%);
-    }
 
     /* ============ SLIDE 8: STATISTICS / NUMBERS ============ */
     .slide-8 {
@@ -1112,15 +1122,15 @@
         flex-direction: column;
       }
       .slide-7 .timeline {
-        flex-direction: column;
+        grid-template-columns: 1fr;
+        gap: 22px;
+        padding-top: 0;
       }
+
       .slide-7 .timeline-step {
-        margin-right: 0;
-        margin-bottom: -4px;
+        min-height: auto;
       }
-      .slide-7 .step-connector {
-        display: none;
-      }
+
       .slide-8 .stats-grid {
         grid-template-columns: repeat(2, 1fr);
       }
@@ -1368,19 +1378,16 @@
       </div>
       <div class="timeline">
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">01</div>
           <div class="step-title">研究</div>
           <div class="step-desc">市场分析、用户访谈与竞品审计，为项目奠定基础。</div>
         </div>
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">02</div>
           <div class="step-title">概念</div>
           <div class="step-desc">情绪板、草图与方向探索，定义视觉语言。</div>
         </div>
         <div class="timeline-step">
-          <div class="step-connector"></div>
           <div class="step-num">03</div>
           <div class="step-title">构建</div>
           <div class="step-desc">细化执行，每周评审并持续与利益相关方对齐。</div>
