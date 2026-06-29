@@ -1093,6 +1093,142 @@
     }
 
 
+    /* ============ SLIDE 11: COMPARISON / VS ============ */
+    .slide-comparison {
+      background: var(--offwhite);
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .slide-comparison .slide-header {
+      margin-bottom: 40px;
+      align-items: flex-start;
+      text-align: left;
+    }
+
+    .slide-comparison .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 24px;
+      width: 100%;
+      align-items: stretch;
+    }
+
+    .slide-comparison .comparison-card {
+      border: var(--border);
+      background: var(--white);
+      padding: 40px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .slide-comparison .comparison-card.a-side {
+      background: var(--cream);
+    }
+
+    .slide-comparison .comparison-card.b-side {
+      background: var(--blue);
+    }
+
+    .slide-comparison .comparison-title {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900;
+      font-size: clamp(32px, 4vw, 56px);
+      text-transform: uppercase;
+      line-height: 1;
+      margin-bottom: 8px;
+      text-align: center;
+    }
+
+    .slide-comparison .comparison-subtitle {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 20px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      text-align: center;
+    }
+
+    .slide-comparison .comparison-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      margin: 0;
+      padding: 0;
+    }
+
+    .slide-comparison .comparison-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 22px;
+      line-height: 1.5;
+      font-weight: 500;
+    }
+
+    .slide-comparison .comparison-list .list-marker {
+      flex-shrink: 0;
+      width: 28px;
+      height: 28px;
+      border: 3px solid var(--black);
+      background: var(--white);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-weight: 700;
+      font-size: 16px;
+      margin-top: 2px;
+    }
+
+    .slide-comparison .vs-badge {
+      align-self: center;
+      width: 80px;
+      height: 80px;
+      border: var(--border);
+      background: var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-weight: 900;
+      font-size: 28px;
+      box-shadow: var(--shadow-sm);
+      transform: rotate(-8deg);
+      flex-shrink: 0;
+    }
+
+    .slide-comparison .comparison-verdict {
+      margin-top: 40px;
+      border: var(--border);
+      background: var(--white);
+      padding: 24px 32px;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .slide-comparison .verdict-label {
+      font-family: 'Space Grotesk', 'Noto Sans SC', monospace;
+      font-size: 18px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      flex-shrink: 0;
+    }
+
+    .slide-comparison .verdict-text {
+      font-family: 'Inter', 'Noto Sans SC', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.4;
+    }
+
     /* Responsive adjustments */
     @media (max-width: 1024px) {
       .slide {
@@ -1137,6 +1273,22 @@
       .slide-9 .team-grid {
         grid-template-columns: repeat(2, 1fr);
       }
+      .slide-comparison .comparison-grid {
+        grid-template-columns: 1fr;
+      }
+      .slide-comparison .vs-badge {
+        order: -1;
+        justify-self: center;
+        transform: rotate(0deg);
+        width: 64px;
+        height: 64px;
+        font-size: 22px;
+      }
+      .slide-comparison .comparison-verdict {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+      }
     }
 
     @media (max-width: 640px) {
@@ -1151,6 +1303,15 @@
       }
       .slide-5 .quote-frame {
         padding: 32px;
+      }
+      .slide-comparison .comparison-card {
+        padding: 24px;
+      }
+      .slide-comparison .comparison-list li {
+        font-size: 18px;
+      }
+      .slide-comparison .verdict-text {
+        font-size: 20px;
       }
     }
   </style>
@@ -1473,6 +1634,44 @@
           <div class="team-role">开发工程师</div>
           <div class="team-bio">构建稳健的前端系统，让静态设计落地为真实产品。</div>
         </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 11: Comparison / VS -->
+    <section class="slide slide-comparison">
+      <div class="slide-header">
+        <div class="nb-label nb-label-pink">产品对比</div>
+      </div>
+      <div class="comparison-grid">
+        <div class="comparison-card a-side">
+          <div>
+            <div class="comparison-title">A 产品</div>
+            <div class="comparison-subtitle">传统方案</div>
+          </div>
+          <ul class="comparison-list">
+            <li><span class="list-marker">+</span><span>功能成熟稳定，生态完善</span></li>
+            <li><span class="list-marker">+</span><span>团队学习成本低</span></li>
+            <li><span class="list-marker">−</span><span>定制化能力有限</span></li>
+            <li><span class="list-marker">−</span><span>长期授权费用较高</span></li>
+          </ul>
+        </div>
+        <div class="vs-badge">VS</div>
+        <div class="comparison-card b-side">
+          <div>
+            <div class="comparison-title">B 产品</div>
+            <div class="comparison-subtitle">创新方案</div>
+          </div>
+          <ul class="comparison-list">
+            <li><span class="list-marker">+</span><span>灵活开放，可按需扩展</span></li>
+            <li><span class="list-marker">+</span><span>无授权费用，自主可控</span></li>
+            <li><span class="list-marker">−</span><span>需要一定的技术投入</span></li>
+            <li><span class="list-marker">−</span><span>社区支持仍在成长</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="comparison-verdict">
+        <div class="verdict-label">结论</div>
+        <div class="verdict-text">如果追求长期自主可控，B 产品是更优选择；若需要快速落地，A 产品仍是稳妥方案。</div>
       </div>
     </section>
 
