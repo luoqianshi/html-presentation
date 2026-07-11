@@ -646,6 +646,74 @@
     .hljs-deletion { color: #fca5a5; }
     .hljs-addition { color: #99E885; }
 
+    /* ---- Inline covers inside theme card ---- */
+    .template-card .covers-inline {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--line);
+    }
+    .template-card .covers-inline-title {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--muted);
+      margin-bottom: 0.65rem;
+    }
+    .template-card .covers-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+    }
+    .template-card .cover-item {
+      display: flex;
+      align-items: center;
+      gap: 0.55rem;
+      padding: 0.4rem 0.7rem 0.4rem 0.4rem;
+      background: var(--soft);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      transition: border-color 0.15s ease, background 0.15s ease;
+    }
+    .template-card .cover-item:hover {
+      background: #fff;
+      border-color: var(--muted);
+    }
+    .template-card .cover-thumb {
+      display: block;
+      width: 64px;
+      height: 36px;
+      border-radius: 4px;
+      overflow: hidden;
+      background: #111;
+      flex-shrink: 0;
+    }
+    .template-card .cover-thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .template-card .cover-info {
+      display: flex;
+      flex-direction: column;
+      gap: 0.15rem;
+      min-width: 0;
+    }
+    .template-card .cover-name {
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--ink);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 150px;
+    }
+    .template-card .cover-style {
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+    }
+
     @media (max-width: 640px) {
       .md-modal { padding: 8px; }
       .md-modal__dialog { max-height: 100%; border-radius: 10px; }
@@ -663,7 +731,6 @@
       </a>
       <div class="nav-links">
         <a class="nav-link" href="#templates">模板</a>
-        <a class="nav-link" href="#workflow">发布流程</a>
         <a class="nav-link" href="#" data-md="README.md" data-title="README" data-crumb="README.md" data-type="markdown">README</a>
         <a class="nav-link" href="#" data-md="themes/index.json" data-title="模板索引" data-crumb="themes/index.json" data-type="json">模板索引</a>
         <a class="nav-link primary" href="https://www.bilibili.com/video/BV1g5j46iE5C/?spm_id_from=333.1387.homepage.video_card.click&vd_source=a44f29c4f18178d5fbf00c97794d0f32" target="_blank" rel="noreferrer">视频教程</a>
@@ -752,6 +819,91 @@
     </div>
   </div>
 
+  <!-- cover-index-data -->
+  <script>
+    window.__COVER_INDEX__ = {
+  "schema_version": 1,
+  "covers": [
+    {
+      "id": "blockframe/classic",
+      "theme": "blockframe",
+      "file": "themes/blockframe/covers/classic.html",
+      "name": "BlockFrame · 经典封面",
+      "style": "classic",
+      "preview": "assets/previews/covers/blockframe_classic.png",
+      "best_for": "保留主题原始风格的通用封面",
+      "placeholders": [
+        "title",
+        "subtitle",
+        "tagline",
+        "meta"
+      ]
+    },
+    {
+      "id": "blockframe-dark/classic",
+      "theme": "blockframe-dark",
+      "file": "themes/blockframe-dark/covers/classic.html",
+      "name": "BlockFrame Dark · 经典封面",
+      "style": "classic",
+      "preview": "assets/previews/covers/blockframe-dark_classic.png",
+      "best_for": "保留主题原始风格的通用封面",
+      "placeholders": [
+        "title",
+        "subtitle",
+        "tagline",
+        "meta"
+      ]
+    },
+    {
+      "id": "blue-professional/classic",
+      "theme": "blue-professional",
+      "file": "themes/blue-professional/covers/classic.html",
+      "name": "Blue Professional · 经典封面",
+      "style": "classic",
+      "preview": "assets/previews/covers/blue-professional_classic.png",
+      "best_for": "保留主题原始风格的通用封面",
+      "placeholders": [
+        "title",
+        "subtitle",
+        "tagline",
+        "meta"
+      ]
+    },
+    {
+      "id": "purple-gold-presentation/classic",
+      "theme": "purple-gold-presentation",
+      "file": "themes/purple-gold-presentation/covers/classic.html",
+      "name": "Purple Gold Presentation · 经典封面",
+      "style": "classic",
+      "preview": "assets/previews/covers/purple-gold-presentation_classic.png",
+      "best_for": "保留主题原始风格的通用封面",
+      "placeholders": [
+        "title",
+        "subtitle",
+        "tagline",
+        "meta"
+      ]
+    },
+    {
+      "id": "purple-gold-presentation/tutorial",
+      "theme": "purple-gold-presentation",
+      "file": "themes/purple-gold-presentation/covers/tutorial.html",
+      "name": "Purple Gold Presentation · 教程风封面",
+      "style": "tutorial",
+      "preview": "assets/previews/covers/purple-gold-presentation_tutorial.png",
+      "best_for": "AI 教程、实战教学、零基础入门类视频封面",
+      "placeholders": [
+        "title",
+        "subtitle",
+        "tags",
+        "category"
+      ]
+    }
+  ],
+  "generated_at": "2026-07-08T16:46:48.898855Z"
+};
+  </script>
+
   <script>
     const templates = [
       {
@@ -806,13 +958,45 @@
     const segments = Array.from(document.querySelectorAll('.segment'));
     let activeFilter = 'all';
 
-    function render() {
+    function getCoverIndex() {
+      if (window.__COVER_INDEX__ && window.__COVER_INDEX__.covers) {
+        return Promise.resolve(window.__COVER_INDEX__);
+      }
+      return fetch('themes/covers-index.json', { cache: 'no-cache' })
+        .then((res) => res.json())
+        .catch(() => ({ covers: [] }));
+    }
+
+    function renderCoversInline(themeSlug, coverIndex) {
+      const covers = (coverIndex && coverIndex.covers || []).filter((c) => c.theme === themeSlug);
+      if (!covers.length) return '';
+      return `
+        <div class="covers-inline">
+          <div class="covers-inline-title">可选封面模板</div>
+          <div class="covers-list">
+            ${covers.map((c) => `
+              <a class="cover-item" href="${c.file}" target="_blank" rel="noreferrer" title="${c.name} · ${c.best_for || ''}">
+                <span class="cover-thumb"><img src="${c.preview}" alt="${c.name}" loading="lazy" onerror="this.src='assets/previews/${c.theme}.png?v=2'"></span>
+                <span class="cover-info">
+                  <span class="cover-name">${c.name.replace(/^[^·]+·\s*/, '')}</span>
+                  <span class="cover-style">${c.style}</span>
+                </span>
+              </a>
+            `).join('')}
+          </div>
+        </div>
+      `;
+    }
+
+    async function render() {
       const keyword = search.value.trim().toLowerCase();
       const visible = templates.filter((item) => {
         const inScheme = activeFilter === 'all' || item.scheme === activeFilter;
         const haystack = [item.name, item.slug, item.tagline, item.scheme, ...item.tags].join(' ').toLowerCase();
         return inScheme && (!keyword || haystack.includes(keyword));
       });
+
+      const coverIndex = await getCoverIndex();
 
       count.textContent = `${visible.length} 个模板`;
       grid.innerHTML = visible.map((item) => `
@@ -835,6 +1019,7 @@
               <a class="btn primary" href="${item.template}" target="_blank" rel="noreferrer">实时预览</a>
               <button type="button" class="btn" data-doc="${item.docs}" data-title="${item.name} · 设计文档" data-type="markdown">设计文档</button>
             </div>
+            ${renderCoversInline(item.slug, coverIndex)}
           </div>
         </article>
       `).join('');
