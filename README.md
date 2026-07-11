@@ -55,6 +55,18 @@
 
 本项目已配置 GitHub Actions（`.github/workflows/pages.yml`）。上传到 GitHub 后，在仓库 **Settings → Pages** 中选择 **GitHub Actions** 作为部署来源，每次 push 到 `main` 都会自动部署到 GitHub Pages。
 
+## 效果预览
+
+| BlockFrame | BlockFrame Dark | Blue Professional | Purple Gold |
+|---|---|---|---|
+| ![BlockFrame](assets/previews/blockframe.png) | ![BlockFrame Dark](assets/previews/blockframe-dark.png) | ![Blue Professional](assets/previews/blue-professional.png) | ![Purple Gold](assets/previews/purple-gold-presentation.png) |
+
+### 可选封面模板
+
+| BlockFrame Classic | BlockFrame Dark Classic | Blue Professional Classic | Purple Gold Classic | Purple Gold Tutorial |
+|---|---|---|---|---|
+| ![BlockFrame Classic](assets/previews/covers/blockframe_classic.png) | ![BlockFrame Dark Classic](assets/previews/covers/blockframe-dark_classic.png) | ![Blue Professional Classic](assets/previews/covers/blue-professional_classic.png) | ![Purple Gold Classic](assets/previews/covers/purple-gold-presentation_classic.png) | ![Purple Gold Tutorial](assets/previews/covers/purple-gold-presentation_tutorial.png) |
+
 ## 快速开始
 
 ### 1. 创建演示文稿
