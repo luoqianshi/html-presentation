@@ -268,9 +268,33 @@
     }
 
     .layout-cover .cover-content {
-      width: 100%;
-      max-width: 1100px;
+      width: 88%;
+      max-width: 1200px;
+      margin: 0 auto;
       text-align: left;
+    }
+
+    .layout-cover .cover-title-wrap {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 2vw;
+      margin-bottom: 44px;
+    }
+
+    .layout-cover .cover-titles {
+      flex: 0 1 auto;
+    }
+
+    .layout-cover .cover-character {
+      flex: 0 0 auto;
+      width: auto;
+      height: auto;
+      max-height: 36vh;
+      max-width: 18vw;
+      object-fit: contain;
+      transform: translateY(-1.5vh);
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.5));
     }
 
     .layout-cover .cover-tag {
@@ -1000,12 +1024,17 @@
           2026
         </div>
 
-        <h1 class="cover-title-row">
-          <span class="cover-gray cover-strike">PPT </span><span class="cover-purple">正在被</span>
-        </h1>
-        <h1 class="cover-title-row-2">
-          <span class="cover-yellow">HTML </span><span class="cover-purple">淘汰</span>
-        </h1>
+        <div class="cover-title-wrap">
+          <div class="cover-titles">
+            <h1 class="cover-title-row">
+              <span class="cover-gray cover-strike">PPT </span><span class="cover-purple">正在被</span>
+            </h1>
+            <h1 class="cover-title-row-2">
+              <span class="cover-yellow">HTML </span><span class="cover-purple">淘汰</span>
+            </h1>
+          </div>
+          <img class="cover-character" src="classic-character.png" alt="卡通人物">
+        </div>
 
         <p class="cover-subtitle">从幻灯片到交互式素材 —— 内容创作的范式转移</p>
         <p class="cover-bottom-line"><span class="cover-yellow">AI</span> 让 HTML 门槛降到 <span class="cover-yellow">零</span></p>
