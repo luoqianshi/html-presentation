@@ -209,14 +209,15 @@
       box-shadow: var(--glow-green);
     }
     .slide-project-cover .project-cover-character {
-      display: block;
-      width: 320px;
+      position: absolute;
+      top: 68%;
+      right: 6vw;
+      width: 260px;
       height: auto;
-      margin-top: 28px;
-      margin-left: auto;
-      margin-right: auto;
+      transform: none;
       z-index: 6;
       filter: drop-shadow(0 16px 32px rgba(0,0,0,0.5));
+      pointer-events: none;
     }
     .slide-project-cover .project-cover-badge {
       position: absolute;
@@ -686,11 +687,11 @@
         <div>
           <div class="nb-label project-cover-label nb-label-blue">开源工具分享</div>
           <h1 class="nb-heading-xl project-cover-title"><span class="text-yellow">开源！</span><br>用 <mark class="project-cover-highlight">HTML</mark> 替代 PPT<br>做分镜，我踩完坑了！</h1>
-          <img class="project-cover-character" src="think-character.png" alt="思考小人">
         </div>
         <p class="project-cover-subtitle">从模板到 workflow，完整分享我趟过的路。</p>
         <div class="project-cover-circle"></div>
         <div class="project-cover-badge">html-presentation</div>
+        <img class="project-cover-character" src="think-character.png" alt="思考小人">
       </div>
     </section>
 </body>
